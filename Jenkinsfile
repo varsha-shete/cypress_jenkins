@@ -1,7 +1,8 @@
 node{
 	stage('basic info'){
 		sh ''' pwd 
-			deleteDir()
+		       cd pwd
+		       rm -rf *
 		       ls -lart
 		'''
 	}

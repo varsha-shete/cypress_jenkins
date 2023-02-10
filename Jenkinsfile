@@ -1,7 +1,7 @@
 node{
-	def workdir="/var/lib/docker/volumes/cypress_test/_data"
 	stage('basic info'){
 			deleteDir()
+			sh '''rm -rf *'''
 	}
 	stage('scm checkout'){
 		 withCredentials([usernameColonPassword(credentialsId: 'csi4auto-technical-user', variable: 'github_credential'), usernameColonPassword(credentialsId: 'varsha_git_test', variable: 'varshagit'), usernamePassword(credentialsId: 'nexus_id', passwordVariable: 'nexuspwd', usernameVariable: 'nexusuname')]) {

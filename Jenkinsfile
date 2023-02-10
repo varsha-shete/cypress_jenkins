@@ -9,7 +9,7 @@ node{
 			cd cypress_final && ./utilities/script.sh $github_credential $nexusuname $nexuspwd
 		  '''
                     }
-		    junit 'results/my-test-output.xml'
+		    junit '/var/jenkins_home/workspace/test_varsha/cypress_jenkins_test/cypress_final/results/my-test-output.xml'
 	}
 
 

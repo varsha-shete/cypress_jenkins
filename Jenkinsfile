@@ -13,7 +13,7 @@ node{
 		  	git clone https://$varshagit@github.com/varsha-shete/cypress_jenkins.git cypress
 
 			chmod +x ./cypress/utilities/script.sh
-			cd repoclone && ./utilities/script.sh $github_credential $nexusuname $nexuspwd
+			cd cypress && ./utilities/script.sh $github_credential $nexusuname $nexuspwd
 		  '''
                     }
 	}

@@ -14,7 +14,7 @@ node{
 			whoami
 			ls -lrt
 			docker run -v cypress_test:/e2e -w /e2e cypress/included:10.10.0 /bin/bash
-		        cp $workdir/results/my-test-output.xml .	
+		        cp /var/lib/docker/volumes/cypress_test/_data/results/my-test-output.xml .	
 		  '''
                     }
 	}

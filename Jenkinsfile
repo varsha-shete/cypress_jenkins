@@ -7,7 +7,7 @@ node{
 		  	git clone https://$varshagit@github.com/varsha-shete/cypress_jenkins.git cypress_final
 			chmod +x ./cypress_final/utilities/script.sh
 			mkdir ./results
-			chown -R jenkins:jenkins ./results
+			chmod -R 777 ./results
 			cd cypress_final && ./utilities/script.sh $github_credential $nexusuname $nexuspwd
 		  '''
                     }

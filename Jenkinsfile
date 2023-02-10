@@ -12,7 +12,7 @@ node{
 			pwd
 			whoami
 			ls -lrt
-			docker run -v /var/jenkins_home/workspace/test_varsha/cypress_jenkins_test/cypress_jenkins:/e2e -w /e2e cypress/included:10.10.0
+			docker run -v cypress_test:/e2e -w /e2e cypress/included:10.10.0
 			
 		  '''
                     }

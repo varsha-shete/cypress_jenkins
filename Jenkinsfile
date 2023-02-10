@@ -13,6 +13,8 @@ node{
 			pwd
 			ls -lrt
 			docker run -v $PWD:/e2e -w /e2e cypress/included:10.10.0
+			echo "**************"
+			ls -lrt
 		'''
 	}
 

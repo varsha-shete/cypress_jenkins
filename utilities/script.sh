@@ -29,4 +29,4 @@ list=`ls -lrt $wrkdir`
 wrkdir="$(echo $wrkdir | sed 's/\/var\/jenkins_home\// /g')"
 echo "$wrkdir"
 echo "$list"
-docker run -v jenkins_home_volume:/e2e -w /e2e/$wrkdir cypress/included:12.5.1
+docker run -v jenkins_home_volume:/workdir -w /e2e/$wrkdir cypress/included:12.5.1

@@ -10,7 +10,7 @@ node{
 	stage('scm checkout'){
 		 withCredentials([usernameColonPassword(credentialsId: 'csi4auto-technical-user', variable: 'github_credential'), usernameColonPassword(credentialsId: 'varsha_git_test', variable: 'varshagit'), usernamePassword(credentialsId: 'nexus_id', passwordVariable: 'nexuspwd', usernameVariable: 'nexusuname')]) {
                   sh '''
-		  	cd $workdir
+		  	cd /var/lib/docker/volumes/cypress_test/_data/
 			rm -rf *
 		  	git clone https://$varshagit@github.com/varsha-shete/cypress_jenkins.git
 			pwd

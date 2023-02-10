@@ -9,10 +9,10 @@ node{
                   sh '''git clone https://$varshagit@github.com/varsha-shete/cypress_jenkins.git
 			pwd
 			ls -lrt
-			docker run -v /var/jenkins_home/workspace/test_varsha/cypress_jenkins_test:/e2e -w /e2e cypress/included:10.10.0
+			docker run -v /var/jenkins_home/workspace/test_varsha/cypress_jenkins_test/cypress_jenkins:/e2e -w /e2e cypress/included:10.10.0
 			
 		  '''
-			}
+                    }
 	}
 
 

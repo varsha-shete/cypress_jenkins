@@ -2,6 +2,7 @@ node{
 	stage('basic info'){
 		sh ''' pwd 
 		       ls -lart
+		       rm -rf cypress_jenkins
 		'''
 	}
 	stage('scm checkout'){

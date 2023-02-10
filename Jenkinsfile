@@ -20,6 +20,15 @@ pipeline{
 					ls -lrt
 				'''
 			}
+			post{
+				success {
+					stash includes: 'results/my-test-output.xml', name: 'report', useDefaultExcludes: false
+				}
+			}
+		}
+		stage('junit'){
+			unstash 'report'
+			ls -lrt
 		}
 
 	}

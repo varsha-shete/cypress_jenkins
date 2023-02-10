@@ -1,6 +1,6 @@
 node{
 	stage('basic info'){
-		sh ''' ls -lrt 
+		sh ''' ls -lrt cypress/results/ 
 		rm -rf *'''
 		deleteDir()
 	}

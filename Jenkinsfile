@@ -11,7 +11,7 @@ node{
 		sh '''
 			cd /var/jenkins_home/workspace/test_varsha/cypress_jenkins_test/
 			ls -lrt /tmp/test/
-			docker run -v $PWD:/e2e -w /e2e cypress/included:10.10.0
+			docker run -v $PWD/e2e:/e2e -w /e2e cypress/included:10.10.0
 			echo "**************"
 			ls -lrt
 		'''

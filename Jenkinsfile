@@ -10,7 +10,6 @@ node{
 	stage('docker run'){
 		sh '''
 			pwd
-			ls -lrt cypress
 			docker run -v /var/jenkins_home/workspace/test_varsha/cypress_test:/e2e -w /e2e cypress/included:10.10.0
 			echo "**************"
 			ls -lrt

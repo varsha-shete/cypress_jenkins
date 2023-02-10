@@ -4,7 +4,7 @@ node{
 		sh ''' pwd 
 		       ls -lart
 		       whoami
-		       rm -rf cypress_jenkins
+			deleteDir()
 		'''
 	}
 	stage('scm checkout'){

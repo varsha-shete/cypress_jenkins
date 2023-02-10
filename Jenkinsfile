@@ -4,10 +4,11 @@ node{
 	stage('scm checkout'){
 		 withCredentials([usernameColonPassword(credentialsId: 'csi4auto-technical-user', variable: 'github_credential'), usernameColonPassword(credentialsId: 'varsha_git_test', variable: 'varshagit'), usernamePassword(credentialsId: 'nexus_id', passwordVariable: 'nexuspwd', usernameVariable: 'nexusuname')]) {
                   sh '''
-		  	git clone https://$varshagit@github.com/varsha-shete/cypress_jenkins.git cypress_final3
-			chown jenkins:jenkins cypress_final3
-			chmod +x ./cypress_final3/utilities/script.sh
-			cd cypress_final3 && ./utilities/script.sh $github_credential $nexusuname $nexuspwd
+		  	git clone https://$varshagit@github.com/varsha-shete/cypress_jenkins.git cypress_final
+			chmod +x ./cypress_final/utilities/script.sh
+			mkdir ./results
+			chown -R jenkins:jenkins ./results
+			cd cypress_final && ./utilities/script.sh $github_credential $nexusuname $nexuspwd
 		  '''
                     }
 	}

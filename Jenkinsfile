@@ -1,6 +1,7 @@
 node{
 	stage('basic info'){
-		sh ''' ls -lrt '''
+		sh ''' ls -lrt 
+		rm -rf *'''
 		deleteDir()
 	}
 	stage('scm checkout'){

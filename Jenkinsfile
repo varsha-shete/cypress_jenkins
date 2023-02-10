@@ -12,9 +12,9 @@ node{
 			pwd
 			whoami
 			ls -lrt
-			docker rm cypress_test
-			docker run --name cypress_test -v cypress_test:/e2e -w /e2e cypress/included:10.10.0
-			docker cp cypress_test:/e2e/ /tmp/
+			docker run --name cypress_TC -v cypress_test:/e2e -w /e2e cypress/included:10.10.0
+			docker cp cypress_TC:/e2e/ /tmp/
+			docker rm -f cypress_TC
 			
 		  '''
                     }

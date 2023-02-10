@@ -13,7 +13,7 @@ node{
 			pwd
 			whoami
 			ls -lrt
-			docker run -v cypress_test/cypress_jenkins:/e2e -w /e2e cypress/included:10.10.0 /bin/bash
+			docker run -v cypress_test:/e2e -w /e2e cypress/included:10.10.0 /bin/bash
 		        cp $workdir/results/my-test-output.xml .	
 		  '''
                     }

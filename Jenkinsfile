@@ -9,8 +9,9 @@ node{
 	}
 	stage('docker run'){
 		sh '''
+			rm -rf /tmp/test/
 			mkdir /tmp/test/
-			cp -rf /var/jenkins_home/workspace/test_varsha/cypress_jenkins_test/ /tmp/test/
+			cp -rf /var/jenkins_home/workspace/test_varsha/cypress_jenkins_test/* /tmp/test/
 			ls -lrt /tmp/test/
 			docker run -v /tmp/test:/e2e -w /e2e cypress/included:10.10.0
 			echo "**************"

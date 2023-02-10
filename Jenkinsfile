@@ -1,7 +1,6 @@
 node{
 	stage('basic info'){
 		sh ''' pwd 
-		       cd pwd
 		       rm -rf *
 		       ls -lart
 		'''

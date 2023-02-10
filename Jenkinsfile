@@ -1,4 +1,5 @@
 node{
+	def workdir="/var/lib/docker/volumes/cypress_test/_data"
 	stage('basic info'){
 		sh ''' pwd 
 		       ls -lart
@@ -8,14 +9,14 @@ node{
 	}
 	stage('scm checkout'){
 		 withCredentials([usernameColonPassword(credentialsId: 'csi4auto-technical-user', variable: 'github_credential'), usernameColonPassword(credentialsId: 'varsha_git_test', variable: 'varshagit'), usernamePassword(credentialsId: 'nexus_id', passwordVariable: 'nexuspwd', usernameVariable: 'nexusuname')]) {
-                  sh '''git clone https://$varshagit@github.com/varsha-shete/cypress_jenkins.git
+                  sh '''
+		  	cd $workdir
+		  	git clone https://$varshagit@github.com/varsha-shete/cypress_jenkins.git
 			pwd
 			whoami
 			ls -lrt
-			docker rm -f cypress_TC
-			docker run --name cypress_TC -v cypress_test:/e2e -w /e2e cypress/included:10.10.0 /bin/bash
-			docker cp cypress_TC:/e2e/ /tmp/
-			
+			docker run -v cypress_test:/e2e -w /e2e cypress/included:10.10.0 /bin/bash
+		        cp $workdir/results/my-test-output.xml .	
 		  '''
                     }
 	}

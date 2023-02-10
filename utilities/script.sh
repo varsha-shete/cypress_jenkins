@@ -3,7 +3,6 @@
 
 wrkdir=${PWD}
 echo "$wrkdir"
-chown -R jenkins:jenkins $wrkdir
 ls -lirt
 wrkdir="$(echo $wrkdir | sed 's/\/var\/jenkins_home\///g')"
 echo "$wrkdir"

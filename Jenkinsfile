@@ -1,4 +1,5 @@
 pipeline{
+	def build_ok = true
 	agent any
 	stages{
 		stage('Clean Workspace'){
@@ -15,9 +16,9 @@ pipeline{
                     }
 			}
 		}
+		try{
 		stage('run cypress'){
 			steps{
-					catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
 					sh '''
 						wrkdir=${PWD}/cypress_jenkins
 						wrkdir="$(echo $wrkdir | sed \'s/\\/var\\/jenkins_home\\///g\')"
@@ -25,7 +26,6 @@ pipeline{
 						pwd
 						ls -lrt
 					'''
-					}
 			  }
 			  post{
                                         always {
@@ -35,7 +35,11 @@ pipeline{
 
                          }
 				
-		}
+		}}
+		catch(e) {
+     			   build_ok = false
+		           echo e.toString()
+    		}
 		stage('junit'){
 			steps{
 				unstash 'report'
@@ -43,16 +47,13 @@ pipeline{
 				ls -lrt '''
 				junit allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, skipPublishingChecks: true, testResults: 'cypress_jenkins/results/*.xml'
 			}
-			post{
-				success{
-					currentBuild.result = 'SUCCESS'
-				}
-				failure{
-					currentBuild.result = 'FAILURE'
-				}
-			}
 
 		}
+		 if(build_ok) {
+        		currentBuild.result = "SUCCESS"
+	    	} else {
+		        currentBuild.result = "FAILURE"
+    		}
 
 	}
 }

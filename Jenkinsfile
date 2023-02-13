@@ -17,7 +17,7 @@ pipeline{
 		}
 		stage('run cypress'){
 			steps{
-					catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+					catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
 					sh '''
 						wrkdir=${PWD}/cypress_jenkins
 						wrkdir="$(echo $wrkdir | sed \'s/\\/var\\/jenkins_home\\///g\')"
@@ -41,14 +41,6 @@ pipeline{
 				sh ''' 
 				ls -lrt '''
 				junit allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, skipPublishingChecks: true, testResults: 'cypress_jenkins/results/*.xml'
-			}
-			post{
-				success {
-					buildSetResult(currentBuild)
-				}
-				failure {
-					buildSetResult(currentBuild, 'FAILURE')	
-				}
 			}
 		}
 

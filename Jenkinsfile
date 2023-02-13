@@ -25,17 +25,10 @@ pipeline{
 						ls -lrt
 					'''
 			  }
-				post{
-					always {
-						stash includes: 'cypress_jenkins/results/my-test-output.xml', name: 'report', useDefaultExcludes: false
-					}
-
-				}
 				
 		}
 		stage('junit'){
 			steps{
-				unstash 'report'
 				sh ''' 
 				ls -lrt '''
 				junit allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, testResults: 'cypress_jenkins/results/my-test-output.xml'

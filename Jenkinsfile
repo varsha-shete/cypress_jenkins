@@ -1,6 +1,9 @@
 pipeline{
 	agent any
 	stages{
+		stage('Clean Workspace'){
+        		deleteDir()
+    		}
 		stage('scm checkout'){
 			steps{
 				withCredentials([usernameColonPassword(credentialsId: 'csi4auto-technical-user', variable: 'github_credential'), usernameColonPassword(credentialsId: 'varsha_git_test', variable: 'varshagit'), usernamePassword(credentialsId: 'nexus_id', passwordVariable: 'nexuspwd', usernameVariable: 'nexusuname')]) {
@@ -30,7 +33,6 @@ pipeline{
 			steps{
 				unstash 'report'
 				sh ''' 
-				chmod +x results/my-test-output.xml
 				ls -lrt '''
 			}
 		}

@@ -38,6 +38,7 @@ pipeline{
 		}
 		stage('junit'){
 			steps{
+				unstash 'report'
 				sh ''' 
 				ls -lrt '''
 				junit allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, testResults: 'cypress_jenkins/results/my-test-output.xml'

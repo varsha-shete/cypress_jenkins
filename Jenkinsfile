@@ -41,7 +41,7 @@ pipeline{
 				unstash 'report'
 				sh ''' 
 				ls -lrt '''
-				junit allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, skipPublishingChecks: true, testResults: 'cypress_jenkins/results/*.xml
+				junit allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, skipPublishingChecks: true, testResults: 'cypress_jenkins/results/*.xml'
 			}
 		}
 

@@ -16,9 +16,9 @@ pipeline{
                     }
 			}
 		}
-		try{
 		stage('run cypress'){
 			steps{
+				catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
 					sh '''
 						wrkdir=${PWD}/cypress_jenkins
 						wrkdir="$(echo $wrkdir | sed \'s/\\/var\\/jenkins_home\\///g\')"
@@ -26,6 +26,7 @@ pipeline{
 						pwd
 						ls -lrt
 					'''
+				}
 			  }
 			  post{
                                         always {
@@ -35,11 +36,7 @@ pipeline{
 
                          }
 				
-		}}
-		catch(e) {
-     			   build_ok = false
-		           echo e.toString()
-    		}
+		}
 		stage('junit'){
 			steps{
 				unstash 'report'
@@ -49,12 +46,19 @@ pipeline{
 			}
 
 		}
-		 if(build_ok) {
-        		currentBuild.result = "SUCCESS"
-	    	} else {
-		        currentBuild.result = "FAILURE"
-    		}
 
 	}
+	post {
+     		success {
+        		echo "Pipeline result: ${currentBuild.result}"
+	        	echo "Pipeline currentResult: ${currentBuild.currentResult}"
+			currentBuild.result='success'
+        	}
+		failure {
+                        echo "Pipeline result: ${currentBuild.result}"
+                        echo "Pipeline currentResult: ${currentBuild.currentResult}"
+                        currentBuild.result='failure'
+                }
+    	}
 }
 

@@ -27,12 +27,9 @@ pipeline{
 				}
 				
 				post{
-					success {
+					always {
 						stash includes: 'cypress_jenkins/results/my-test-output.xml', name: 'report', useDefaultExcludes: false
 					}
-					failure {
-                                                  stash includes: 'cypress_jenkins/results/my-test-output.xml', name: 'report', useDefaultExcludes: false
-                                         }
 
 				}
 				

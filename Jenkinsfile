@@ -38,7 +38,7 @@ pipeline{
 				unstash 'report'
 				sh ''' 
 				ls -lrt '''
-				junit 'cypress_jenkins/results/my-test-output.xml'
+				junit allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, testResults: 'cypress_jenkins/results/my-test-output.xml'
 			}
 		}
 

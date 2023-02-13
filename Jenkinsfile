@@ -17,16 +17,17 @@ pipeline{
 		}
 		stage('run cypress'){
 			steps{
-				catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
 					sh '''
 						wrkdir=${PWD}/cypress_jenkins
 						wrkdir="$(echo $wrkdir | sed \'s/\\/var\\/jenkins_home\\///g\')"
-						docker run -v jenkins_home_volume:/e2e -w /e2e/$wrkdir  --user "$(id -u):$(id -g)" cypress/included:10.10.0
+					try{
+						docker run -v jenkins_home_volume:/e2e -w /e2e/$wrkdir  --user "$(id -u):$(id -g)" cypress/included:10.10.0}
+					catch{
+						 echo "Error in $__EXCEPTION_SOURCE__ at line: $__EXCEPTION_LINE__!"	}
 						pwd
 						ls -lrt
 					'''
 				}
-			  }
 			  post{
                                         always {
                                                 stash includes: 'cypress_jenkins/results/**/*', name: 'report', useDefaultExcludes: false
@@ -46,16 +47,4 @@ pipeline{
 
 		}
 
-	}
-	post {
-     		success {
-        		echo "Pipeline result: ${currentBuild.result}"
-	        	echo "Pipeline currentResult: ${currentBuild.currentResult}"
-        	}
-		failure {
-                        echo "Pipeline result: ${currentBuild.result}"
-                        echo "Pipeline currentResult: ${currentBuild.currentResult}"
-                }
-    	}
-}
 

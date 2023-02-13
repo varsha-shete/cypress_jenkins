@@ -1,5 +1,3 @@
-
-
 pipeline{
 	agent any
 	stages{
@@ -38,7 +36,6 @@ pipeline{
 
 				}
 				
-			}
 		}
 		stage('junit'){
 			steps{

@@ -19,22 +19,24 @@ pipeline{
 		}
 		stage('run cypress'){
 			steps{
-				try{
-					sh '''
-						wrkdir=${PWD}/cypress_jenkins
-						wrkdir="$(echo $wrkdir | sed \'s/\\/var\\/jenkins_home\\///g\')"
-						docker run -v jenkins_home_volume:/e2e -w /e2e/$wrkdir  --user "$(id -u):$(id -g)" cypress/included:10.10.0
-						pwd
-						ls -lrt
-					'''
-				} catch (error e){
-					echo "error : ${e.toString()}"
-					currentBuild.result = "SUCCESS"
+				script{
+					try{
+						sh '''
+							wrkdir=${PWD}/cypress_jenkins
+							wrkdir="$(echo $wrkdir | sed \'s/\\/var\\/jenkins_home\\///g\')"
+							docker run -v jenkins_home_volume:/e2e -w /e2e/$wrkdir  --user "$(id -u):$(id -g)" cypress/included:10.10.0
+							pwd
+							ls -lrt
+						'''
+					} catch (error e){
+						echo "error : ${e.toString()}"
+						currentBuild.result = "SUCCESS"
+					}
 				}
-			}
-			post{
-				success {
-					stash includes: 'cypress_jenkins/results/my-test-output.xml', name: 'report', useDefaultExcludes: false
+				post{
+					success {
+						stash includes: 'cypress_jenkins/results/my-test-output.xml', name: 'report', useDefaultExcludes: false
+					}
 				}
 			}
 		}

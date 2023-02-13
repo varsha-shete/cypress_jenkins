@@ -43,6 +43,15 @@ pipeline{
 				ls -lrt '''
 				junit allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, skipPublishingChecks: true, testResults: 'cypress_jenkins/results/*.xml'
 			}
+			post{
+				success{
+					currentBuild.result = 'SUCCESS'
+				}
+				failure{
+					currentBuild.result = 'FAILURE'
+				}
+			}
+
 		}
 
 	}

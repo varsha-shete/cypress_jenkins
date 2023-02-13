@@ -1,3 +1,4 @@
+
 pipeline{
 	agent any
 	stages{
@@ -20,7 +21,8 @@ pipeline{
 				sh '''
 					wrkdir=${PWD}/cypress_jenkins
 					wrkdir="$(echo $wrkdir | sed \'s/\\/var\\/jenkins_home\\///g\')"
-					docker run -v jenkins_home_volume:/e2e -w /e2e/$wrkdir  --user "$(id -u):$(id -g)" cypress/included:10.10.0
+i					docker run -v jenkins_home_volume:/e2e -w /e2e/$wrkdir  --user "$(id -u):$(id -g)" cypress/included:10.10.0
+					-c 'npm install cypress-soft-assertions'					
 					pwd
 					ls -lrt
 				'''

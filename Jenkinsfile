@@ -29,7 +29,7 @@ pipeline{
 		stage('junit'){
 			steps{
 				unstash 'report'
-				ls -lrt
+				sh ''' ls -lrt '''
 			}
 		}
 

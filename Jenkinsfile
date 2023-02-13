@@ -27,7 +27,7 @@ pipeline{
 			}
 			post{
 				success {
-					stash includes: 'results/my-test-output.xml', name: 'report', useDefaultExcludes: false
+					stash includes: 'cypress_jenkins/results/my-test-output.xml', name: 'report', useDefaultExcludes: false
 				}
 			}
 		}
@@ -36,6 +36,7 @@ pipeline{
 				unstash 'report'
 				sh ''' 
 				ls -lrt '''
+				junit 'cypress_jenkins/results/my-test-output.xml'
 			}
 		}
 

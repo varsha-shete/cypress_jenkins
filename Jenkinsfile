@@ -51,12 +51,10 @@ pipeline{
      		success {
         		echo "Pipeline result: ${currentBuild.result}"
 	        	echo "Pipeline currentResult: ${currentBuild.currentResult}"
-			currentBuild.result='success'
         	}
 		failure {
                         echo "Pipeline result: ${currentBuild.result}"
                         echo "Pipeline currentResult: ${currentBuild.currentResult}"
-                        currentBuild.result='failure'
                 }
     	}
 }

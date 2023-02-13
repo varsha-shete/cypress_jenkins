@@ -24,14 +24,13 @@ pipeline{
 						pwd
 						ls -lrt
 					'''
-				
+			  }
 				post{
 					always {
 						stash includes: 'cypress_jenkins/results/my-test-output.xml', name: 'report', useDefaultExcludes: false
 					}
 
 				}
-			}
 				
 		}
 		stage('junit'){

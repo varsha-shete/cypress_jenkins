@@ -29,7 +29,9 @@ pipeline{
 		stage('junit'){
 			steps{
 				unstash 'report'
-				sh ''' ls -lrt '''
+				sh ''' 
+				chmod +x results/my-test-output.xml
+				ls -lrt '''
 			}
 		}
 

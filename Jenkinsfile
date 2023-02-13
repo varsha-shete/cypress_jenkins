@@ -1,5 +1,4 @@
 pipeline{
-	def build_ok = true
 	agent any
 	stages{
 		stage('Clean Workspace'){

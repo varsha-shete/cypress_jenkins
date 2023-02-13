@@ -31,9 +31,6 @@ pipeline{
                                         success {
                                                 stash includes: 'cypress_jenkins/results/**/*', name: 'report', useDefaultExcludes: false
                                         }
-                                        failure {
-                                                  stash includes: 'cypress_jenkins/results/**/*', name: 'report', useDefaultExcludes: false
-                                         }
 
                          }
 				
@@ -44,6 +41,7 @@ pipeline{
 				sh ''' 
 				ls -lrt '''
 				junit allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, skipPublishingChecks: true, testResults: 'cypress_jenkins/results/*.xml'
+				currentBuild.result = 'FAILURE'
 			}
 		}
 

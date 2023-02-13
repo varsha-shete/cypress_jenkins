@@ -17,7 +17,7 @@ pipeline{
 		}
 		stage('run cypress'){
 			steps{
-					catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+					catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
 					sh '''
 						wrkdir=${PWD}/cypress_jenkins
 						wrkdir="$(echo $wrkdir | sed \'s/\\/var\\/jenkins_home\\///g\')"

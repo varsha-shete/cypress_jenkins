@@ -16,6 +16,7 @@ pipeline{
 			}
 		}
 		stage('run cypress'){
+			steps{
 					sh '''
 						wrkdir=${PWD}/cypress_jenkins
 						wrkdir="$(echo $wrkdir | sed \'s/\\/var\\/jenkins_home\\///g\')"
@@ -30,6 +31,7 @@ pipeline{
 					}
 
 				}
+			}
 				
 		}
 		stage('junit'){

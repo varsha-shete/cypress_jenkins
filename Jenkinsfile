@@ -28,9 +28,10 @@ pipeline{
 					}
 			  }
 			  post{
-                                        success {
+                                        always {
                                                 stash includes: 'cypress_jenkins/results/**/*', name: 'report', useDefaultExcludes: false
                                         }
+
 
                          }
 				

@@ -25,6 +25,15 @@ pipeline{
 						ls -lrt
 					'''
 			  }
+			  post{
+                                        success {
+                                                stash includes: 'cypress_jenkins/results/**/*', name: 'report', useDefaultExcludes: false
+                                        }
+                                        failure {
+                                                  stash includes: 'cypress_jenkins/results/**/*', name: 'report', useDefaultExcludes: false
+                                         }
+
+                         }
 				
 		}
 		stage('junit'){

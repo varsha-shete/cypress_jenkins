@@ -27,13 +27,19 @@ pipeline{
 					ls -lrt
 					'''
 				}
-				script{
-     					   stage_status = true
-				 }
 			 }
 			  post{
-                                        always {
+                                        success {
                                                 stash includes: 'cypress_jenkins/results/**/*', name: 'report', useDefaultExcludes: false
+						script{
+							stage_status = true
+						}
+                                        }
+					failure {
+                                                stash includes: 'cypress_jenkins/results/**/*', name: 'report', useDefaultExcludes: false
+						script{
+							stage_status = false
+						}
                                         }
 
 

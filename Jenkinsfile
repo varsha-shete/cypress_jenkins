@@ -1,3 +1,4 @@
+def boolean stage_status = true
 pipeline{
 	agent any
 	stages{
@@ -15,9 +16,9 @@ pipeline{
                     }
 			}
 		}
-		try {
 		stage('run cypress'){
 			steps{
+				catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
 					sh '''
 						wrkdir=${PWD}/cypress_jenkins
 						wrkdir="$(echo $wrkdir | sed \'s/\\/var\\/jenkins_home\\///g\')"
@@ -26,6 +27,10 @@ pipeline{
 					ls -lrt
 					'''
 				}
+				if(currentStage.getCurrentResult() == "FAILURE") {
+     					   stage_status = false
+   				 }
+			 }
 			  post{
                                         always {
                                                 stash includes: 'cypress_jenkins/results/**/*', name: 'report', useDefaultExcludes: false
@@ -35,15 +40,17 @@ pipeline{
                          }
 				
 		}
-		} catch (exception e) {
-					echo "error"
-		}
 		stage('junit'){
 			steps{
 				unstash 'report'
 				sh ''' 
 				ls -lrt '''
 				junit allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, skipPublishingChecks: true, testResults: 'cypress_jenkins/results/*.xml'
+				if ( stage_status == true ){
+					currentBuild.result = "SUCCESS"
+				}else {
+					currentBuild.result = "FAILURE"
+				}
 			}
 
 		}

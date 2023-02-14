@@ -46,10 +46,12 @@ pipeline{
 				sh ''' 
 				ls -lrt '''
 				junit allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, skipPublishingChecks: true, testResults: 'cypress_jenkins/results/*.xml'
+				script{
 				if ( stage_status == true ){
 					currentBuild.result = "SUCCESS"
 				}else {
 					currentBuild.result = "FAILURE"
+				}
 				}
 			}
 

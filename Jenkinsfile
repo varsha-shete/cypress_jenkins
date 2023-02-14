@@ -27,9 +27,11 @@ pipeline{
 					ls -lrt
 					'''
 				}
+				script{
 				if(currentStage.getCurrentResult() == "FAILURE") {
      					   stage_status = false
    				 }
+				 }
 			 }
 			  post{
                                         always {

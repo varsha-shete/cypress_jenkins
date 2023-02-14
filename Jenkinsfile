@@ -1,4 +1,4 @@
-def boolean stage_status = true
+def boolean stage_status = false
 pipeline{
 	agent any
 	stages{
@@ -28,9 +28,7 @@ pipeline{
 					'''
 				}
 				script{
-				if(currentStage.getCurrentResult() == "FAILURE") {
-     					   stage_status = false
-   				 }
+     					   stage_status = true
 				 }
 			 }
 			  post{

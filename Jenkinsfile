@@ -1,4 +1,4 @@
-def boolean stage_status = false
+def boolean stage_status = true
 pipeline{
 	agent any
 	stages{
@@ -30,11 +30,6 @@ pipeline{
 			  		always  {
 						 stash includes: 'cypress_jenkins/results/**/*', name: 'report', useDefaultExcludes: false
 					}
-                                        success {
-						script{
-							stage_status = true
-						}
-                                        }
 					failure {
 						script{
 							stage_status = false

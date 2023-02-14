@@ -15,17 +15,13 @@ pipeline{
                     }
 			}
 		}
+		try{
 		stage('run cypress'){
 			steps{
 					sh '''
 						wrkdir=${PWD}/cypress_jenkins
 						wrkdir="$(echo $wrkdir | sed \'s/\\/var\\/jenkins_home\\///g\')"
-					try {
 						docker run -v jenkins_home_volume:/e2e -w /e2e/$wrkdir  --user "$(id -u):$(id -g)" cypress/included:10.10.0
-					}
-					catch (exception e){
-						echo "Error in $__EXCEPTION_SOURCE__ at line: $__EXCEPTION_LINE__!
-					}
 					pwd
 					ls -lrt
 					'''
@@ -38,6 +34,9 @@ pipeline{
 
                          }
 				
+		}
+		}catch(exception e){
+					echo "error"
 		}
 		stage('junit'){
 			steps{

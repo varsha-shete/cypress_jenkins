@@ -15,7 +15,7 @@ pipeline{
                     }
 			}
 		}
-		try{
+		try {
 		stage('run cypress'){
 			steps{
 					sh '''
@@ -35,7 +35,7 @@ pipeline{
                          }
 				
 		}
-		}catch(exception e){
+		} catch (exception e){
 					echo "error"
 		}
 		stage('junit'){

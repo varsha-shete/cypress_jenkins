@@ -35,7 +35,7 @@ pipeline{
                          }
 				
 		}
-		} catch (exception e){
+		} catch (exception e) {
 					echo "error"
 		}
 		stage('junit'){

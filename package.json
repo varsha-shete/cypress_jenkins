@@ -1,0 +1,13 @@
+{
+  "name": "cypress",
+  "productName": "Cypress",
+  "description": "Cypress.io end to end testing tool",
+  "version": "10.10.0",
+  "electronVersion": "21.0.0",
+  "electronNodeVersion": "16.16.0",
+  "main": "index.js",
+  "env": "production",
+  "dependencies": {
+    "cypress-mochawesome-reporter": "^3.3.0"
+  }
+}

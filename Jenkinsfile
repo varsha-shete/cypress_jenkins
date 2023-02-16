@@ -22,7 +22,7 @@ pipeline{
 					sh '''
 						wrkdir=${PWD}/cypress_jenkins
 						wrkdir="$(echo $wrkdir | sed \'s/\\/var\\/jenkins_home\\///g\')"
-						docker cp . /e2e  custom_cypress
+						docker inspect --format="{{.Id}}" custom_cypress | cut -d ":" -f2
 						docker run -e NO_COLOR=1 -v jenkins_home_volume:/e2e -w /e2e  --user "$(id -u):$(id -g)" custom_cypress
 					'''
 				}

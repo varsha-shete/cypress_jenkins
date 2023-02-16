@@ -24,6 +24,7 @@ pipeline{
 						wrkdir="$(echo $wrkdir | sed \'s/\\/var\\/jenkins_home\\///g\')"
 						container_id=`docker inspect --format="{{.Id}}" custom_cypress | cut -d ":" -f2`
 						echo $container_id
+						docker cp cypress.config.js /e2e/
 						docker run -e NO_COLOR=1 -v jenkins_home_volume:/e2e -w /e2e  --user "$(id -u):$(id -g)" custom_cypress
 					'''
 				}

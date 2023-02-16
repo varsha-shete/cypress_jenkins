@@ -23,8 +23,8 @@ pipeline{
 				}
 			}
 			steps {
-				ls -lrt
-				pwd
+			       sh '''ls -lrt
+				pwd '''
 			}
 		}
 		stage('run cypress'){

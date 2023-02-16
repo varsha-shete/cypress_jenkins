@@ -16,13 +16,22 @@ pipeline{
                     }
 			}
 		}
+		stage('copy content to docker'){
+			agent{
+				docker {
+					image 'custom_cypress'
+				}
+			}
+			steps {
+				ls -lrt
+				pwd
+			}
+		}
 		stage('run cypress'){
 			steps{
 				catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
 					sh '''
 						wrkdir=${PWD}/cypress_jenkins
-						container_id=`docker inspect --format="{{.Id}}" custom_cypress | cut -d ":" -f2`
-						docker cp $wrkdir/cypress.config.js $container_id:/e2e
 						wrkdir="$(echo $wrkdir | sed \'s/\\/var\\/jenkins_home\\///g\')"
 						docker run -e NO_COLOR=1 -v jenkins_home_volume:/e2e -w /e2e  --user "$(id -u):$(id -g)" custom_cypress
 					'''

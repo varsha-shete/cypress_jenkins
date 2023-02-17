@@ -11,7 +11,7 @@ pipeline{
 			steps{
 				withCredentials([usernameColonPassword(credentialsId: 'csi4auto-technical-user', variable: 'github_credential'), usernameColonPassword(credentialsId: 'varsha_git_test', variable: 'varshagit'), usernamePassword(credentialsId: 'nexus_id', passwordVariable: 'nexuspwd', usernameVariable: 'nexusuname')]) {
                   sh '''
-                        git clone https://$varshagit@github.com/varsha-shete/cypress_jenkins.git
+                        git clone https://$varshagit@github.com/varsha-shete/cypress_jenkins.git 
                   '''
                     }
 			}
@@ -24,7 +24,7 @@ pipeline{
 						wrkdir="$(echo $wrkdir | sed \'s/\\/var\\/jenkins_home\\///g\')"
 						ls -lrt
 						pwd
-						docker run -e NO_COLOR=1 -v jenkins_home_volume:/e2e/e2etest -w /e2e/ --user "$(id -u):$(id -g)" custom_cypress -C e2etest/$wrkdir/cypress.config.js --spec e2etest/$wrkdir/*.cy.js --config CYPRESS_reportDir=e2etest/$wrkdir/reports
+						docker run -e NO_COLOR=1 -v jenkins_home_volume:/e2e/e2etest -w /e2e/ --user "$(id -u):$(id -g)" custom_cypress -C e2etest/$wrkdir/cypress.config.js --spec e2etest/$wrkdir/*.cy.js --reporter-options reportDir="e2etest/$wrkdir/reports" mochaFile: "e2etest/$wrkdir/reports/my-test-output-[hash].xml"
 					'''
 				}
 			 }

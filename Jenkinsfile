@@ -24,7 +24,7 @@ pipeline{
 						wrkdir="$(echo $wrkdir | sed \'s/\\/var\\/jenkins_home\\///g\')"
 						ls -lrt
 						pwd
-						docker run -e NO_COLOR=1 -v jenkins_home_volume:/e2e/$wrkdir -w /e2e/   --user "$(id -u):$(id -g)" custom_cypress -C /e2e/$wrkdir/cypress.config.js --spec $wrkdir/*.cy.js
+						docker run -e NO_COLOR=1 -v jenkins_home_volume:/wrkdir -w /e2e/   --user "$(id -u):$(id -g)" custom_cypress -C $wrkdir/cypress.config.js --spec $wrkdir/*.cy.js
 					'''
 				}
 			 }

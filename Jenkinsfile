@@ -24,11 +24,11 @@ pipeline{
 						wrkdir="$(echo $wrkdir | sed \'s/\\/var\\/jenkins_home\\///g\')"
 						ls -lrt
 						pwd
-						docker run -e NO_COLOR=1 -v jenkins_home_volume:/e2e/e2etest -w /e2e/ --user "$(id -u):$(id -g)" custom_cypress -C e2etest/$wrkdir/cypress.config.js --spec e2etest/$wrkdir/*.cy.js
+						docker run -e NO_COLOR=1 --mount type=bind, source=jenkins_home_volume,taget=/e2e/ -w /e2e/$wrkdir  --user "$(id -u):$(id -g)" custom_cypress
 					'''
 				}
 			 }
-			  post{
+		  post{
 			  
 			  		always  {
 					       script {
@@ -56,7 +56,7 @@ pipeline{
 				junit allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, skipPublishingChecks: true, testResults: 'cypress_jenkins/results/*.xml'
 				script{
 					if ( stage_status == true ){
-						currentBuild.result = "SUCCESS"
+				currentBuild.result = "SUCCESS"
 					}else {
 						currentBuild.result = "FAILURE"
 					}

@@ -24,8 +24,8 @@ pipeline{
 						wrkdir="$(echo $wrkdir | sed \'s/\\/var\\/jenkins_home\\///g\')"
 						ls -lrt
 						pwd
-						docker run -e NO_COLOR=1 -v jenkins_home_volume:/e2e/e2etest -w /e2e/ --user "$(id -u):$(id -g)" custom_cypress -C e2etest/$wrkdir/cypress.config.js --spec e2etest/$wrkdir/*.cy.js  --reporter-options {"reporterEnabled": "cypress-mochawesome-reporter, junit", reportDir="e2etest/$wrkdir/reports" mochaFile: "e2etest/$wrkdir/reports/my-test-output-[hash].xml"}
-					'''
+						docker run -e NO_COLOR=1 -v jenkins_home_volume:/e2e/e2etest -w /e2e/ --user "$(id -u):$(id -g)" custom_cypress -C e2etest/$wrkdir/cypress.config.js --spec e2etest/$wrkdir/*.cy.js  --reporter-options reportDir="e2etest/$wrkdir/reports" mochaFile: "e2etest/$wrkdir/reports/my-test-output-[hash].xml"
+						'''
 				}
 			 }
 		         post{

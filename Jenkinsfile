@@ -20,7 +20,7 @@ pipeline{
 			steps{
 				catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
 					sh '''
-						docker run --rm -D custom_cypress /bin/bash
+						docker run --rm -d custom_cypress /bin/bash
 						wrkdir=${PWD}/cypress_jenkins
 						wrkdir="$(echo $wrkdir | sed \'s/\\/var\\/jenkins_home\\///g\')"
 						ls -lrt

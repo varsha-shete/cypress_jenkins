@@ -13,9 +13,9 @@ module.exports = defineConfig({
 	  supportFile: '**/support/e2e.js',
 	specPattern: '**/*.cy.js',
      setupNodeEvents(on, config) {
-
+     console.log(config.CYPRESS_reportDir)
       require('cypress-mochawesome-reporter/plugin')(on);
-
+      return config
     },	
   },
 })

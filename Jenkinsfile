@@ -24,7 +24,7 @@ pipeline{
 						wrkdir="$(echo $wrkdir | sed \'s/\\/var\\/jenkins_home\\///g\')"
 						ls -lrt
 						pwd
-						docker run -e NO_COLOR=1 -v jenkins_home_volume:/e2e/e2etest -w /e2e/ --user "$(id -u):$(id -g)" custom_cypress -C e2etest/$wrkdir/cypress.config.js --spec e2etest/$wrkdir/*.cy.js --reporter cypress-multi-reporters  --reporter-options "e2etest/$wrkdir/index.html"
+						docker run -e NO_COLOR=1 -v jenkins_home_volume:/e2e/e2etest -w /e2e/ --user "$(id -u):$(id -g)" custom_cypress -C e2etest/$wrkdir/cypress.config.js --spec e2etest/$wrkdir/*.cy.js --reporter  cypress-mochawesome-reporter --reporter-options reportDir="e2etest/$wrkdir/results"
 					'''
 				}
 			 }

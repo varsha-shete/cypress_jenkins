@@ -31,7 +31,7 @@ pipeline{
 			  
 			  		always  {
 					       script {
-      	sh ''' ls -lrt '''
+      	sh ''' ls -lrt cypress_jenkins '''
       }
 						 stash includes: 'cypress_jenkins/results/**/*', name: 'report', useDefaultExcludes: false
 					}

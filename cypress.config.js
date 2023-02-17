@@ -6,7 +6,7 @@ module.exports = defineConfig({
   reporterOptions: {
     //mochaFile: 'results/my-test-output-[hash].xml',
     //toConsole: true,
-	"reportDir": "results",
+	"reportDir": "e2etest/results",
 	  charts: true,
     reportPageTitle: 'custom-title',
     embeddedScreenshots: true,

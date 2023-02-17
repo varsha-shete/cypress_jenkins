@@ -48,7 +48,7 @@ pipeline{
 				unstash 'report'
 				sh ''' 
 				ls -lrt '''
-				junit allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, skipPublishingChecks: true, testResults: 'cypress_jenkins/results/*.xml'
+				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'cypress_jenkins/reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
 				script{
 					if ( stage_status == true ){
 				currentBuild.result = "SUCCESS"

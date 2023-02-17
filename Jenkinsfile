@@ -20,7 +20,8 @@ pipeline{
 			steps{
 				catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
 					sh '''
-						docker run --rm -d custom_cypress /bin/bash
+						container_id=`docker run --rm -d custom_cypress /bin/bash`
+						docker cp $container_id:/node_modules .
 						wrkdir=${PWD}/cypress_jenkins
 						wrkdir="$(echo $wrkdir | sed \'s/\\/var\\/jenkins_home\\///g\')"
 						ls -lrt

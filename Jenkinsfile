@@ -24,7 +24,7 @@ pipeline{
 						wrkdir="$(echo $wrkdir | sed \'s/\\/var\\/jenkins_home\\///g\')"
 						ls -lrt
 						pwd
-						docker run -e NO_COLOR=1 --mount type=bind, source=jenkins_home_volume,taget=/e2e/ -w /e2e/$wrkdir  --user "$(id -u):$(id -g)" custom_cypress
+						docker run -e NO_COLOR=1 --mount type=bind,source=jenkins_home_volume,target=/e2e/ -w /e2e/$wrkdir  --user "$(id -u):$(id -g)" custom_cypress
 					'''
 				}
 			 }

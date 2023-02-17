@@ -14,7 +14,7 @@ module.exports = defineConfig({
   },
   e2e: {
     baseUrl: 'https://docs.cypress.io/guides/references/configuration',
-	supportFile: false,
+	  //	supportFile: false,
 	specPattern: '**/*.cy.js',
      setupNodeEvents(on, config) {
 

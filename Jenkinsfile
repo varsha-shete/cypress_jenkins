@@ -48,7 +48,14 @@ pipeline{
 				unstash 'report'
 				sh ''' 
 				ls -lrt '''
-				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'cypress_jenkins/reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+				publishHTML (target: [
+      					allowMissing: false,
+				      	alwaysLinkToLastBuild: false,
+      					keepAll: true,
+	      				reportDir: 'cypress_jenkins/reports',
+      					reportFiles: 'index.html',
+      					reportName: "HTML Report"
+    				])
 				script{
 					if ( stage_status == true ){
 				currentBuild.result = "SUCCESS"

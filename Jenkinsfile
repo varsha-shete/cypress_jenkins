@@ -24,21 +24,20 @@ pipeline{
 						wrkdir="$(echo $wrkdir | sed \'s/\\/var\\/jenkins_home\\///g\')"
 						ls -lrt
 						pwd
-						docker run -e NO_COLOR=1 -v jenkins_home_volume:/e2e/e2etest -w /e2e/ --user "$(id -u):$(id -g)" custom_cypress -C e2etest/$wrkdir/cypress.config.js --spec e2etest/$wrkdir/*.cy.js --reporter  cypress-mochawesome-reporter --reporter-options reportDir="e2etest/$wrkdir/reports"
+						docker run -e NO_COLOR=1 -v jenkins_home_volume:/e2e/e2etest -w /e2e/ --user "$(id -u):$(id -g)" custom_cypress -C e2etest/$wrkdir/cypress.config.js --spec e2etest/$wrkdir/*.cy.js --reporter  junit,cypress-mochawesome-reporter --reporter-options reportDir="e2etest/$wrkdir/reports" mochaFile: 'results/my-test-output-[hash].xml
 					'''
 				}
 			 }
-		  post{
+		         post{
 			  
-			  		always  {
-						 stash includes: 'cypress_jenkins/reports/**/*', name: 'report', useDefaultExcludes: false
-					}
-					failure {
+			  	always  {
+						stash includes: 'cypress_jenkins/reports/**/*', name: 'report', useDefaultExcludes: false
+				}
+				failure {
 						script{
 							stage_status = false
 						}
-                                        }
-
+				}
 
                          }
 				

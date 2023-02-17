@@ -24,7 +24,7 @@ pipeline{
 						wrkdir="$(echo $wrkdir | sed \'s/\\/var\\/jenkins_home\\///g\')"
 						ls -lrt
 						pwd
-						docker run -e NO_COLOR=1 --mount type=bind,source="/var/lib/docker/volumes/jenkins_home_volume/_data/",target=/e2e/ -w /e2e/  --user "$(id -u):$(id -g)" custom_cypress -C /e2e/workspace/test_varsha/cypress_jenkins_test/cypress_jenkins/cypress.config.js
+						docker run -e NO_COLOR=1 -v jenkins_home_volume:/e2e/e2etest -w /e2e/ --user "$(id -u):$(id -g)" custom_cypress -C e2etest/$wrkdir/cypress.config.js --spec e2etest/$wrkdir/*.cy.js
 					'''
 				}
 			 }

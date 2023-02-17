@@ -24,18 +24,13 @@ pipeline{
 						wrkdir="$(echo $wrkdir | sed \'s/\\/var\\/jenkins_home\\///g\')"
 						ls -lrt
 						pwd
-						docker run -e NO_COLOR=1 -v jenkins_home_volume:/e2e/e2etest -w /e2e/ --user "$(id -u):$(id -g)" custom_cypress -C e2etest/$wrkdir/cypress.config.js --spec e2etest/$wrkdir/*.cy.js --reporter  cypress-mochawesome-reporter --reporter-options reportDir="e2etest/$wrkdir/results"
+						docker run -e NO_COLOR=1 -v jenkins_home_volume:/e2e/e2etest -w /e2e/ --user "$(id -u):$(id -g)" custom_cypress -C e2etest/$wrkdir/cypress.config.js --spec e2etest/$wrkdir/*.cy.js --reporter  cypress-mochawesome-reporter --reporter-options reportDir="e2etest/$wrkdir/reports"
 					'''
 				}
 			 }
 		  post{
 			  
 			  		always  {
-					       script {
-      	sh ''' pwd
-	ls -lrt cypress_jenkins
-	'''
-      }
 						 stash includes: 'cypress_jenkins/reports/**/*', name: 'report', useDefaultExcludes: false
 					}
 					failure {

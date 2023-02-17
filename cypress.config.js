@@ -2,7 +2,7 @@ const { defineConfig } = require('cypress')
 
 module.exports = defineConfig({
   //reporter: 'junit',
-  reporterEnabled: "cypress-mochawesome-reporter,junit",
+  reporter: "cypress-multi-reporters",
   reporterOptions: {
     //mochaFile: 'results/my-test-output-[hash].xml',
     //toConsole: true,

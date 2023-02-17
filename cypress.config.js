@@ -6,7 +6,8 @@ module.exports = defineConfig({
   reporterOptions: {
     //mochaFile: 'results/my-test-output-[hash].xml',
     //toConsole: true,
-    reporter: 'cypress-mochawesome-reporter',
+     "html": true,
+    "json": false,
   },
   e2e: {
     baseUrl: 'https://docs.cypress.io/guides/references/configuration',

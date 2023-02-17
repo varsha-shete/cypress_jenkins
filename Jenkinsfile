@@ -33,7 +33,7 @@ pipeline{
 			  		always  {
 					       script {
       	sh ''' pwd
-	ls -lrt
+	ls -lrt cypress_jenkins
 	'''
       }
 						 stash includes: 'cypress_jenkins/reports/**/*', name: 'report', useDefaultExcludes: false

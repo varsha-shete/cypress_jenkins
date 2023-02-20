@@ -64,7 +64,7 @@ pipeline{
 
 		}
 		stage('set build status'){
-			script{
+			steps{
                                  if ( stage_status == true ){
                                           currentBuild.result = "SUCCESS"
                                  }else {

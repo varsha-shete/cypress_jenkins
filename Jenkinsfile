@@ -31,6 +31,8 @@ pipeline{
 						cd /e2e/
 						NO_COLOR=1 cypress run
 						echo $WORKSPACE
+						ls -lrt
+						ls -lrt reports
 						cp -rf reports $WORKSPACE
 					'''
 				}

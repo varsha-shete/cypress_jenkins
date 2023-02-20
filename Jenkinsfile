@@ -51,17 +51,22 @@ pipeline{
                          }
 		}
 		stage('html report generation'){
+			unstash 'report'
 			steps{
 				publishHTML (target: [
                         	allowMissing: false,
                                 alwaysLinkToLastBuild: false,
                                 keepAll: true,
-                                reportDir: 'reports',
+                                reportDir: 'reports/HTML/',
                                 reportFiles: 'index.html',
                                 reportName: "HTML Report"
          	             ])
 			}
 
+		}
+		stage('junit report generation'){
+			unstash 'report'
+			junit allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, skipPublishingChecks: true, testResults: 'reports/junit/*.xml'
 		}
 		stage('set build status'){
 			steps{

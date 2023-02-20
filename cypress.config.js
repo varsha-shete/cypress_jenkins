@@ -13,7 +13,8 @@ module.exports = defineConfig({
 	    	  "inlineAssets": true
 	 },
 	 "mochaJunitReporterOptions": {
-		"mochaFile": "reports/junit/results-[hash].xml",
+		 "testsuitesTitle": true,
+		"mochaFile": "cypress/reports/junit/results-[hash].xml",
 		 "toConsole": true,
 
 	 }

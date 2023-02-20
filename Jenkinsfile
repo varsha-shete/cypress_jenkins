@@ -1,10 +1,12 @@
 def boolean stage_status = true
 pipeline{
-	docker {
-            image 'cypress/included:10.10.0'
-            args '--entrypoint=/bin/bash'
-	    args '-u root'
-        }
+	agent {
+		docker {
+        	image 'cypress/included:10.10.0'
+            	args '--entrypoint=/bin/bash'
+	    	args '-u root'
+        	}
+	}
 	stages{
 		stage('Clean Workspace'){
         		steps{

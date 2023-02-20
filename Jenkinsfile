@@ -12,12 +12,15 @@ pipeline{
 				deleteDir()
 			}
     		}
-		stage('setup'){
-			steps{
-			sh '''
-				cd /e2e/
-				ls -lrt
-			'''
+		stage('SCM checkout'){
+			 steps{
+                                withCredentials([usernameColonPassword(credentialsId: 'csi4auto-technical-user', variable: 'github_credential'), usernameColonPassword(credentialsId: 'varsha_git_test', variable: 'varshagit'), usernamePassword(credentialsId: 'nexus_id', passwordVariable: 'nexuspwd', usernameVariable: 'nexusuname')]) {
+                  		sh '''
+                        		cd /e2e/
+					git clone https://$varshagit@github.com/varsha-shete/cypress_jenkins.git
+					ls -lrt
+                  		'''
+                    		}
 			}
 		}
 

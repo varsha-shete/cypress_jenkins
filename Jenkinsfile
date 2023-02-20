@@ -30,12 +30,15 @@ pipeline{
 						cypress --version	
 						cd /e2e/
 						NO_COLOR=1 cypress run
+						echo $WORKSPACE
 						cp -rf reports $WORKSPACE
 					'''
 				}
 			}
 			 post{
                                         always  {
+						script {sh '''echo $WORKSPACE
+                                                cp -rf reports $WORKSPACE '''}
                                                  stash includes: 'results/**/*', name: 'report', useDefaultExcludes: false
                                         }
                                         failure {

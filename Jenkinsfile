@@ -3,7 +3,7 @@ pipeline{
 	agent {
 		docker {
         	image 'custom_cypress'
-            	args '--entrypoint=/bin/bash'
+            	args '--entrypoint='
 	    	args '-u root'
         	}
 	}

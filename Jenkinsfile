@@ -51,8 +51,8 @@ pipeline{
                          }
 		}
 		stage('html report generation'){
-			unstash 'report'
 			steps{
+				unstash 'report'
 				publishHTML (target: [
                         	allowMissing: false,
                                 alwaysLinkToLastBuild: false,
@@ -65,8 +65,10 @@ pipeline{
 
 		}
 		stage('junit report generation'){
-			unstash 'report'
-			junit allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, skipPublishingChecks: true, testResults: 'reports/junit/*.xml'
+			steps{
+				unstash 'report'
+				junit allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, skipPublishingChecks: true, testResults: 'reports/junit/*.xml'
+			}
 		}
 		stage('set build status'){
 			steps{

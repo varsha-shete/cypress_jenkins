@@ -16,7 +16,7 @@ module.exports = defineConfig({
 		"mochaFile": "reports/junit/results-[hash].xml"
 	 }
   },
-  "videosFolder": "reports/videos/",
+  "videosFolder": "cypress/reports/videos/",
   e2e: {
       baseUrl: 'https://docs.cypress.io/guides/references/configuration',
       supportFile: '**/support/e2e.js',

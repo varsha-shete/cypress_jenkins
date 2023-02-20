@@ -6,7 +6,7 @@ module.exports = defineConfig({
   reporterOptions: {
 	  "reporterEnabled": "cypress-mochawesome-reporter, mocha-junit-reporter",
 	  "cypressMochawesomeReporterOptions": {
-		  "reportDir": "reports/HTML",
+		  "reportDir": "reports/html",
     		  "charts": true,
 		  "reportPageTitle": "HTML report",
     		  "embeddedScreenshots": true,

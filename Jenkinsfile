@@ -56,7 +56,7 @@ pipeline{
                         	allowMissing: false,
                                 alwaysLinkToLastBuild: false,
                                 keepAll: true,
-                                reportDir: 'reports/HTML/',
+                                reportDir: 'reports/html/',
                                 reportFiles: 'index.html',
                                 reportName: "HTML Report"
          	             ])

@@ -5,19 +5,20 @@ module.exports = defineConfig({
   reporter: "cypress-multi-reporters",
   reporterOptions: {
 	  "reporterEnabled": "cypress-mochawesome-reporter, mocha-junit-reporter",
-	  "cypressMochawesomeReporterOptions": {
+	"mochaJunitReporterOptions": {
+                 "testsuitesTitle": true,
+                "mochaFile": "cypress/reports/junit/results-[hash].xml",
+                 "toConsole": true,
+
+         },
+
+	"cypressMochawesomeReporterOptions": {
 		  "reportDir": "reports/html",
     		  "charts": true,
 		  "reportPageTitle": "HTML report",
     		  "embeddedScreenshots": true,
 	    	  "inlineAssets": true
 	 },
-	 "mochaJunitReporterOptions": {
-		 "testsuitesTitle": true,
-		"mochaFile": "cypress/reports/junit/results-[hash].xml",
-		 "toConsole": true,
-
-	 }
   },
   "videosFolder": "cypress/reports/videos/",
   e2e: {

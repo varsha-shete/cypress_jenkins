@@ -12,8 +12,10 @@ module.exports = defineConfig({
     		  "embeddedScreenshots": true,
 	    	  "inlineAssets": true
 	 },
-	 "junitReporterOptions": {
-		"mochaFile": "reports/junit/results-[hash].xml"
+	 "mochaJunitReporterOptions": {
+		"mochaFile": "reports/junit/results-[hash].xml",
+		 "toConsole": true,
+
 	 }
   },
   "videosFolder": "cypress/reports/videos/",

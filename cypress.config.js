@@ -2,15 +2,13 @@ const { defineConfig } = require('cypress')
 
 module.exports = defineConfig({
   //reporter: 'junit',
-  reporter: "cypress-multi-reporters",
-  reporterEnabled: "cypress-mochawesome-reporter, junit",
-  //reportOptions: {
-//	  reportDir: "config.env.dirr",
- // }
+  reporter: "cypress-mochawesome-reporter",
   reporterOptions: {
-    //mochaFile: 'results/my-test-output-[hash].xml',
-    //toConsole: true,
-   // reportDir: "result",
+	  "reportDir": "reports",
+    	  "charts": true,
+	  "reportPageTitle": "HTML report",
+    	  "embeddedScreenshots": true,
+    	  "inlineAssets": true
   },
   e2e: {
       baseUrl: 'https://docs.cypress.io/guides/references/configuration',

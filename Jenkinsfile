@@ -19,8 +19,6 @@ pipeline{
                   		sh '''
 					git clone https://$varshagit@github.com/varsha-shete/cypress_jenkins.git 
 					cp -rf cypress_jenkins/* /e2e/
-					cd /e2e/
-					ls -lrt
                   		'''
                     		}
 			}
@@ -29,6 +27,8 @@ pipeline{
 			steps{
 				sh '''
 					cypress --version	
+					cd /e2e/
+					cypress run
 				'''
 			}
 		}

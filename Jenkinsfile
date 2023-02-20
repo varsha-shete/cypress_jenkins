@@ -38,7 +38,7 @@ pipeline{
 			 post{
                                         always  {
 						script {sh '''echo $WORKSPACE
-                                                cp -rf reports $WORKSPACE '''}
+                                                cp -rf /e2e/reports $WORKSPACE '''}
                                                  stash includes: 'results/**/*', name: 'report', useDefaultExcludes: false
                                         }
                                         failure {

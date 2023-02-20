@@ -18,8 +18,8 @@ pipeline{
                                 withCredentials([usernameColonPassword(credentialsId: 'csi4auto-technical-user', variable: 'github_credential'), usernameColonPassword(credentialsId: 'varsha_git_test', variable: 'varshagit'), usernamePassword(credentialsId: 'nexus_id', passwordVariable: 'nexuspwd', usernameVariable: 'nexusuname')]) {
                   		sh '''
 					git clone https://$varshagit@github.com/varsha-shete/cypress_jenkins.git 
+					cp -rf cypress_jenkins/* /e2e/
 					cd /e2e/
-					cp -rf cypress_jenkins/* .
 					ls -lrt
                   		'''
                     		}

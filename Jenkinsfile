@@ -30,6 +30,7 @@ pipeline{
 						cypress --version	
 						cd /e2e/
 						NO_COLOR=1 cypress run
+						cp -rf reports $WORKSPACE
 					'''
 				}
 			}

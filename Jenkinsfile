@@ -17,7 +17,7 @@ pipeline{
                                 withCredentials([usernameColonPassword(credentialsId: 'csi4auto-technical-user', variable: 'github_credential'), usernameColonPassword(credentialsId: 'varsha_git_test', variable: 'varshagit'), usernamePassword(credentialsId: 'nexus_id', passwordVariable: 'nexuspwd', usernameVariable: 'nexusuname')]) {
                   		sh '''
                         		cd /e2e/
-					git clone https://$varshagit@github.com/varsha-shete/cypress_jenkins.git
+					git cloine https://$varshagit@github.com/varsha-shete/cypress_jenkins.git .
 					ls -lrt
                   		'''
                     		}
@@ -26,7 +26,7 @@ pipeline{
 		stage('Cypress execution'){
 			steps{
 				sh '''
-					cypress --version
+					cypress --version	
 				'''
 			}
 		}

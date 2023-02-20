@@ -4,7 +4,7 @@ module.exports = defineConfig({
   //reporter: 'junit',
   reporter: "cypress-multi-reporters",
   reporterOptions: {
-	  "reporterEnabled": "cypress-mochawesome-reporter, junit",
+	  "reporterEnabled": "cypress-mochawesome-reporter, mocha-junit-reporter",
 	  "cypressMochawesomeReporterOptions": {
 		  "reportDir": "reports/HTML",
     		  "charts": true,
@@ -16,6 +16,7 @@ module.exports = defineConfig({
 		"mochaFile": "reports/junit/results-[hash].xml"
 	 }
   },
+  "videosFolder": "reports/videos/"
   e2e: {
       baseUrl: 'https://docs.cypress.io/guides/references/configuration',
       supportFile: '**/support/e2e.js',

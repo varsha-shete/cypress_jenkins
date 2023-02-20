@@ -30,17 +30,15 @@ pipeline{
 						cypress --version	
 						cd /e2e/
 						NO_COLOR=1 cypress run
-						echo $WORKSPACE
-						ls -lrt
-						ls -lrt reports
-						cp -rf reports $WORKSPACE
 					'''
 				}
 			}
 			 post{
                                         always  {
 						script {sh '''echo $WORKSPACE
-                                                cp -rf /e2e/reports $WORKSPACE '''}
+                                                ls -lrt /e2e/
+						ls -lrt /e2e/reports
+						cp -rf /e2e/reports $WORKSPACE '''}
                                                  stash includes: 'reports/**/*', name: 'report', useDefaultExcludes: false
                                         }
                                         failure {

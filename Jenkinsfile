@@ -50,18 +50,17 @@ pipeline{
 
                          }
 		}
-		stage('junit report generation'){
-
-                }
 		stage('html report generation'){
-			publishHTML (target: [
+			steps{
+				publishHTML (target: [
                         	allowMissing: false,
                                 alwaysLinkToLastBuild: false,
                                 keepAll: true,
                                 reportDir: 'reports',
                                 reportFiles: 'index.html',
                                 reportName: "HTML Report"
-                      ])
+         	             ])
+			}
 
 		}
 		stage('set build status'){

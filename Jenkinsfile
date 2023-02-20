@@ -57,18 +57,13 @@ pipeline{
                         	allowMissing: false,
                                 alwaysLinkToLastBuild: false,
                                 keepAll: true,
-                                reportDir: 'reports/html/',
+                                reportDir: 'cypress/reports/html/',
                                 reportFiles: 'index.html',
                                 reportName: "HTML Report"
          	             ])
+			     junit allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, skipPublishingChecks: true, testResults: 'cypress/reports/junit/*.xml'
 			}
 
-		}
-		stage('junit report generation'){
-			steps{
-				unstash 'report'
-				junit allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, skipPublishingChecks: true, testResults: 'reports/junit/*.xml'
-			}
 		}
 		stage('set build status'){
 			steps{

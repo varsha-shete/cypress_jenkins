@@ -25,12 +25,26 @@ pipeline{
 		}
 		stage('Cypress execution'){
 			steps{
-				sh '''
-					cypress --version	
-					cd /e2e/
-					cypress run
-				'''
+				catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+					sh '''
+						cypress --version	
+						cd /e2e/
+						NO_COLOR=1 cypress run
+					'''
+				}
 			}
+			 post{
+                                        always  {
+                                                 stash includes: 'results/**/*', name: 'report', useDefaultExcludes: false
+                                        }
+                                        failure {
+                                                script{
+                                                        stage_status = false
+                                                }
+                                        }
+
+
+                         }
 		}
 
 	}

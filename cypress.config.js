@@ -4,6 +4,9 @@ module.exports = defineConfig({
   //reporter: 'junit',
   reporter: "cypress-multi-reporters",
   reporterEnabled: "cypress-mochawesome-reporter, junit",
+  reportOptions: {
+	reportDir="config.env.dirr"
+  }
   reporterOptions: {
     //mochaFile: 'results/my-test-output-[hash].xml',
     //toConsole: true,

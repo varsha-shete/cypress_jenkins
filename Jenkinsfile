@@ -10,7 +10,7 @@ pipeline{
 		stage('Clean Workspace'){
         		steps{
 				deleteDir()
-				rm -rf /e2e/
+				sh ''' rm -rf /e2e/ '''
 			}
     		}
 		stage('SCM checkout'){

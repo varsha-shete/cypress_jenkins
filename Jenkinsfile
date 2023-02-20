@@ -39,7 +39,7 @@ pipeline{
                                         always  {
 						script {sh '''echo $WORKSPACE
                                                 cp -rf /e2e/reports $WORKSPACE '''}
-                                                 stash includes: 'results/**/*', name: 'report', useDefaultExcludes: false
+                                                 stash includes: 'reports/**/*', name: 'report', useDefaultExcludes: false
                                         }
                                         failure {
                                                 script{
@@ -49,6 +49,29 @@ pipeline{
 
 
                          }
+		}
+		stage('junit report generation'){
+
+                }
+		stage('html report generation'){
+			publishHTML (target: [
+                        	allowMissing: false,
+                                alwaysLinkToLastBuild: false,
+                                keepAll: true,
+                                reportDir: 'reports',
+                                reportFiles: 'index.html',
+                                reportName: "HTML Report"
+                      ])
+
+		}
+		stage('set build status'){
+			script{
+                                 if ( stage_status == true ){
+                                          currentBuild.result = "SUCCESS"
+                                 }else {
+                                          currentBuild.result = "FAILURE"
+                                 }
+                        }
 		}
 
 	}

@@ -16,14 +16,9 @@ pipeline{
 		stage('setup'){
 			steps{
 			sh '''
-				mkdir -p /e2e/
-				cp /root/.cache/Cypress/10.10.0/Cypress/resources/app/package.json /e2e/
-				cd /e2e/
-				npm install
-				npm install --save-dev cypress-mochawesome-reporter
-				npm install --save-dev cypress-multi-reporters
-				chmod -R 755 /e2e
+				cp /root/.cache/Cypress/10.10.0/Cypress/resources/app/package.json .
 			'''
+			sh 'npm install'
 			}
 		}
 

@@ -17,6 +17,7 @@ pipeline{
 			steps{
 			sh '''
 				cp /root/.cache/Cypress/10.10.0/Cypress/resources/app/package.json .
+				chmod 777 package.json
 				ls -lrt
 				npm install
 			'''

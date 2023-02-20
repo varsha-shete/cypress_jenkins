@@ -4,7 +4,6 @@ pipeline{
 		docker {
         	image 'cypress/included:10.10.0'
             	args '--entrypoint='
-	    	args '-u root'
         	}
 	}
 	stages{

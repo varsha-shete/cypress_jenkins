@@ -57,11 +57,11 @@ pipeline{
                         	allowMissing: false,
                                 alwaysLinkToLastBuild: false,
                                 keepAll: true,
-                                reportDir: 'cypress/reports/html/',
+                                reportDir: 'reports/html/',
                                 reportFiles: 'index.html',
                                 reportName: "HTML Report"
          	             ])
-			     junit allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, skipPublishingChecks: true, testResults: 'cypress/reports/junit/*.xml'
+			     junit allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, skipPublishingChecks: true, testResults: 'reports/junit/*.xml'
 			}
 
 		}

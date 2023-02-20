@@ -2,7 +2,7 @@ def boolean stage_status = true
 pipeline{
 	agent {
 		docker {
-        	image 'custom_cypress'
+        	image 'cypress/included:10.10.0'
             	args '--entrypoint='
 	    	args '-u root'
         	}
@@ -16,8 +16,10 @@ pipeline{
 		stage('setup'){
 			steps{
 			sh '''
+				cp /root/.cache/Cypress/10.10.0/Cypress/resources/app/package.json /e2e/
 				cd /e2e/
 				ls -lrt
+				npm install
 			'''
 			}
 		}

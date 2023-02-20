@@ -12,6 +12,7 @@ pipeline{
 			}
     		}
 		stage('setup'){
+			steps{
 			sh '''
 				mkdir -p /e2e/
 				cp /root/.cache/Cypress/10.10.0/Cypress/resources/app/package.json /e2e/
@@ -21,6 +22,7 @@ pipeline{
 				npm install --save-dev cypress-multi-reporters
 				chmod -R 755 /e2e
 			'''
+			}
 		}
 
 	}

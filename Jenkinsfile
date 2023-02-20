@@ -24,9 +24,11 @@ pipeline{
 			}
 		}
 		stage('Cypress execution'){
-			sh '''
-				cypress --version
-			'''
+			steps{
+				sh '''
+					cypress --version
+				'''
+			}
 		}
 
 	}

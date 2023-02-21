@@ -3,14 +3,14 @@ const { defineConfig } = require('cypress')
 module.exports = defineConfig({
   //reporter: 'junit',
   "reporter": "cypress-multi-reporters",
-  "video": "false"
+  "video": "false",
   "reporterOptions": {
 	  "reporterEnabled": "cypress-mochawesome-reporter, mocha-junit-reporter",
 	  "mochaJunitReporterReporterOptions": {
       		"mochaFile": "cypress/reports/junit/results-[hash].xml"
     	  },
 	  "cypressMochawesomeReporterReporterOptions": {
-          	"reportDir": "cypress/reports/html",
+          	"reportDir": "cypress/reports",
           	"charts": true,
           	"reportPageTitle": "My Test Suite",
           	"embeddedScreenshots": true,

@@ -36,7 +36,7 @@ pipeline{
 			 post{
                                         always  {
 						script {sh '''echo $WORKSPACE
-                                                ls -lrt /e2e/cypress/reports/html
+                                                ls -lrt /e2e/cypress/reports
 						cp -rf /e2e/cypress/* $WORKSPACE 
 						'''}
                                                  stash includes: 'reports/**/*', name: 'report', useDefaultExcludes: false
@@ -58,7 +58,7 @@ pipeline{
                         	allowMissing: false,
                                 alwaysLinkToLastBuild: false,
                                 keepAll: true,
-                                reportDir: 'reports/html/',
+                                reportDir: 'cypress/reports',
                                 reportFiles: 'index.html',
                                 reportName: "HTML Report"
          	             ])

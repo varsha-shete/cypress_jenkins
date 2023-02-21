@@ -7,7 +7,7 @@ module.exports = defineConfig({
   "reporterOptions": {
 	  "reporterEnabled": "cypress-mochawesome-reporter, mocha-junit-reporter",
 	  "mochaJunitReporterReporterOptions": {
-      		"mochaFile": "cypress/reports/junit/results-[hash].xml"
+      		"mochaFile": "cypress/reports/junit/results-[hash].xml",
 		"jenkinsMode": true,
     		"jenkinsClassnamePrefix": "E2E Tests",
     		"toConsole": true 

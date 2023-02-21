@@ -7,6 +7,7 @@ def emailBody = """     Hello,</br></br>
                             Regards,</br>
                             CSI4Auto DevOps Team
 					"""
+def emailSubject = "${env.JOB_NAME}- Jenkins Build ${currentBuild.currentResult}"
 pipeline{
 	agent {
 		docker {

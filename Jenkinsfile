@@ -70,7 +70,7 @@ pipeline{
 		}
 		stage('archive reports'){
 			steps{
-				zip archive: true, dir: 'reports/*', exclude: '', glob: '', overwrite: true, zipFile: 'reports.zip'
+				zip archive: true, dir: 'reports/**/*', exclude: '', glob: '', overwrite: true, zipFile: 'reports.zip'
 			}
 		}
 		stage('set build status'){

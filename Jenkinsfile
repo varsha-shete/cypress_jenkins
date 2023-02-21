@@ -70,7 +70,7 @@ pipeline{
 		}
 		stage('archive reports'){
 			steps{
-				archiveArtifacts artifacts: 'reports/**/*', defaultExcludes: false, fingerprint: true, followSymlinks: false
+				zip archive: true, dir: 'reports/*', exclude: '', glob: '', overwrite: true, zipFile: 'reports.zip'
 			}
 		}
 		stage('set build status'){

@@ -68,7 +68,7 @@ pipeline{
 		}
 		stage('archive reports'){
 			steps{
-				archiveArtifacts artifacts: 'reports/*', followSymlinks: false
+				archiveArtifacts artifacts: 'reports/*', defaultExcludes: false, fingerprint: true, followSymlinks: false
 			}
 		}
 		stage('set build status'){

@@ -37,7 +37,7 @@ pipeline{
                                         always  {
 						script {sh '''echo $WORKSPACE
 						ls -lrt /e2e/cypress/
-						cp -rf /e2e/cypress/*  $WORKSPACE/
+						cp -rf /e2e/cypress/*  $WORKSPACE/cypress_jenkins
 						'''}
                                                  stash includes: 'reports/**/*', name: 'report', useDefaultExcludes: false
                                         }
@@ -54,14 +54,6 @@ pipeline{
 			steps{
 				unstash 'report'
 				junit  allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, skipPublishingChecks: true, testResults: 'reports/junit/*.xml'
-				publishHTML (target: [
-                        	allowMissing: false,
-                                alwaysLinkToLastBuild: false,
-                                keepAll: true,
-                                reportDir: 'reports/html',
-                                reportFiles: 'index.html',
-                                reportName: "HTML Report"
-         	             ])
 			}
 
 		}

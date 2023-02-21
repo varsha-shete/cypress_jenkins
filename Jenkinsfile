@@ -1,4 +1,12 @@
 def boolean stage_status = true
+def emailTo = "jyoti.chaudhury@capgemini.com, varsha-vishwas.shete@capgemini.com"
+def emailBody = """     Hello,</br></br>
+                            ${env.JOB_NAME} - Build # $BUILD_NUMBER ${currentBuild.currentResult}</br></br>
+                            Please find the attached zip file for junit, html reports alongwith videos and screenshots</br></br></br>
+			    Kindly check console output <a href='$BUILD_URL'>here</a> to view the details.</br></br></br>
+                            Regards,</br>
+                            CSI4Auto DevOps Team
+					"""
 pipeline{
 	agent {
 		docker {
@@ -73,7 +81,7 @@ pipeline{
 		}
 		stage('Email notification'){
 			steps{
-				emailext body: 'Hello', recipientProviders: [buildUser()], subject: 'Cypress Testing Result', to: 'varsha-vishwas.shete@capgemini.com'
+				emailext attachmentsPattern: 'reports.zip', body: "${emailBody}", subject: "${emailSubject}", to: "${emailTo}"
 			}
 		}
 		stage('set build status'){

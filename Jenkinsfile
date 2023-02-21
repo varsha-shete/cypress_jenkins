@@ -39,7 +39,7 @@ pipeline{
 						ls -lrt /e2e/cypress/
 						cp -rf /e2e/cypress/*  $WORKSPACE/cypress_jenkins
 						'''}
-                                                 stash includes: 'cypress_jenkins/reports/**/*', name: 'report', useDefaultExcludes: false
+                                                 stash includes: 'cypress_jenkins/reports/**/**/*', name: 'report', useDefaultExcludes: false
                                         }
                                         failure {
                                                 script{
@@ -59,7 +59,7 @@ pipeline{
 		}
 		stage('archive reports'){
 			steps{
-				archiveArtifacts artifacts: 'reports/**/*', defaultExcludes: false, fingerprint: true, followSymlinks: false
+				archiveArtifacts artifacts: 'cypress_jenkins/reports/**/*', defaultExcludes: false, fingerprint: true, followSymlinks: false
 			}
 		}
 		stage('set build status'){

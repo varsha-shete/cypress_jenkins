@@ -50,10 +50,19 @@ pipeline{
 
                          }
 		}
-		stage('html report generation'){
+		stage('junit and html report generation'){
 			steps{
 				unstash 'report'
 				junit  allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, skipPublishingChecks: true, testResults: 'reports/junit/*.xml'
+
+				publishHTML (target: [
+                                allowMissing: false,
+                                alwaysLinkToLastBuild: false,
+                                keepAll: true,
+                                reportDir: 'reports/html',
+                                reportFiles: 'index.html',
+                                reportName: "HTML Report"
+				])
 			}
 
 		}

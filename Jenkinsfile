@@ -75,10 +75,8 @@ pipeline{
 		}
 		stage('Email notification'){
 			steps{
-				emailext attachmentsPattern: 'reports.zip', 
-				body: '''Hello,
-				This is regarding the cypress test cases execution result of ${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}
-				Please find the attached junit, html reports anlogwith videos and screenshots''',
+				emailext 
+				body: "Hello",
 				recipientProviders: [buildUser()],
 				subject: "Cypress Testing Result ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
 				to: 'varsha-vishwas.shete@capgemini.com'

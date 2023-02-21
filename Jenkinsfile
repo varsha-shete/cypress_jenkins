@@ -40,7 +40,7 @@ pipeline{
 						cp -rf /e2e/cypress/*  $WORKSPACE/
 						mv $WORKSPACE/screenshots $WORKSPACE/reports/html/
 						'''}
-                                                 stash includes: 'cypress/**/*', name: 'report', useDefaultExcludes: false
+                                                 stash includes: 'reports/**/*', name: 'report', useDefaultExcludes: false
                                         }
                                         failure {
                                                 script{

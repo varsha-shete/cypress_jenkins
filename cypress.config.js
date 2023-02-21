@@ -3,7 +3,7 @@ const { defineConfig } = require('cypress')
 module.exports = defineConfig({
   //reporter: 'junit',
   "reporter": "cypress-multi-reporters",
-  "video": "false",
+  "video": false,
   "reporterOptions": {
 	  "reporterEnabled": "cypress-mochawesome-reporter, mocha-junit-reporter",
 	  "mochaJunitReporterReporterOptions": {

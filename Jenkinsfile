@@ -39,7 +39,7 @@ pipeline{
 						ls -lrt /e2e/cypress/
 						cp -rf /e2e/cypress/*  $WORKSPACE/cypress_jenkins
 						'''}
-                                                 stash includes: 'reports/**/*', name: 'report', useDefaultExcludes: false
+                                                 stash includes: 'cypress_jenkin/reports/**/*', name: 'report', useDefaultExcludes: false
                                         }
                                         failure {
                                                 script{

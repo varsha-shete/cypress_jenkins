@@ -54,7 +54,7 @@ pipeline{
 		stage('html report generation'){
 			steps{
 				unstash 'report'
-				junit allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, skipPublishingChecks: true, testResults: 'cypress/reports/junit/*.xml'
+				junit keepLongStdio: true, testResults: 'reports/junit/*.xml'
 				publishHTML (target: [
                         	allowMissing: false,
                                 alwaysLinkToLastBuild: false,

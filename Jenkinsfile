@@ -75,11 +75,7 @@ pipeline{
 		}
 		stage('Email notification'){
 			steps{
-				emailext 
-				body: "Hello",
-				recipientProviders: [buildUser()],
-				subject: "Cypress Testing Result ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
-				to: 'varsha-vishwas.shete@capgemini.com'
+				emailext body: 'Hello', recipientProviders: [buildUser()], subject: 'Cypress Testing Result', to: 'varsha-vishwas.shete@capgemini.com'
 			}
 		}
 		stage('set build status'){

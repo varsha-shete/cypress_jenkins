@@ -35,8 +35,7 @@ pipeline{
 			}
 			 post{
                                         always  {
-						script {sh '''echo $WORKSPACE
-						ls -lrt /e2e/cypress/
+						script {sh '''
 						cp -rf /e2e/cypress/*  $WORKSPACE/
 						'''}
                                                  stash includes: 'reports/**/*', name: 'report', useDefaultExcludes: false
@@ -50,11 +49,13 @@ pipeline{
 
                          }
 		}
-		stage('junit and html report generation'){
+		stage('junit report generation'){
 			steps{
 				unstash 'report'
 				junit  allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, skipPublishingChecks: true, testResults: 'reports/junit/*.xml'
-
+		}
+		stage('html report generation'){
+			steps{
 				publishHTML (target: [
                                 allowMissing: false,
                                 alwaysLinkToLastBuild: false,

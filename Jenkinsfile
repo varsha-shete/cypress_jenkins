@@ -41,7 +41,6 @@ pipeline{
 						mv $WORKSPACE/screenshots $WORKSPACE/reports/
 						'''}
                                                  stash includes: 'reports/**/*', name: 'report', useDefaultExcludes: false
-						  stash includes: 'results/**/*', name: 'result', useDefaultExcludes: false
                                         }
                                         failure {
                                                 script{
@@ -55,8 +54,7 @@ pipeline{
 		stage('html report generation'){
 			steps{
 				unstash 'report'
-				unstash 'result'
-				junit  allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, skipPublishingChecks: true, testResults: 'results/*.xml'
+				junit  allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, skipPublishingChecks: true, testResults: 'reports/*.xml'
 				publishHTML (target: [
                         	allowMissing: false,
                                 alwaysLinkToLastBuild: false,
@@ -67,6 +65,9 @@ pipeline{
          	             ])
 			}
 
+		}
+		stage('archive reports'){
+			archive 'reports/*'
 		}
 		stage('set build status'){
 			steps{

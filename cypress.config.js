@@ -3,7 +3,6 @@ const { defineConfig } = require('cypress')
 module.exports = defineConfig({
   //reporter: 'junit',
   "reporter": "cypress-multi-reporters",
-  "video": false,
   "reporterOptions": {
 	  "reporterEnabled": "cypress-mochawesome-reporter, mocha-junit-reporter",
 	  "mochaJunitReporterReporterOptions": {
@@ -18,6 +17,8 @@ module.exports = defineConfig({
           	"inlineAssets": true
           }
   },
+  "screenshotsFolder": "cypress/reports/html/screenshots",
+  "videosFolder": "cypress/reports/videos",
   e2e: {
       baseUrl: 'https://docs.cypress.io/guides/references/configuration',
       supportFile: '**/support/e2e.js',

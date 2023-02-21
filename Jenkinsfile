@@ -53,6 +53,7 @@ pipeline{
 			steps{
 				unstash 'report'
 				junit  allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, skipPublishingChecks: true, testResults: 'reports/junit/*.xml'
+			}
 		}
 		stage('html report generation'){
 			steps{

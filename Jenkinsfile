@@ -67,7 +67,9 @@ pipeline{
 
 		}
 		stage('archive reports'){
-			archive 'reports/*'
+			steps{
+				archive 'reports/*'
+			}
 		}
 		stage('set build status'){
 			steps{

@@ -54,7 +54,7 @@ pipeline{
 		stage('html report generation'){
 			steps{
 				unstash 'report'
-				junit keepLongStdio: true, testResults: 'reports/*.xml'
+				junit  allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, skipPublishingChecks: true, testResults: 'reports/*.xml'
 				publishHTML (target: [
                         	allowMissing: false,
                                 alwaysLinkToLastBuild: false,

@@ -7,13 +7,13 @@ module.exports = defineConfig({
   "reporterOptions": {
 	  "reporterEnabled": "cypress-mochawesome-reporter, mocha-junit-reporter",
 	  "mochaJunitReporterReporterOptions": {
-      		"mochaFile": "reports/junit/results-[hash].xml",
+      		"mochaFile": "cypress/reports/junit/results-[hash].xml",
 		"jenkinsMode": true,
     		"jenkinsClassnamePrefix": "E2E Tests",
     		"toConsole": true 
     	  },
 	  "cypressMochawesomeReporterReporterOptions": {
-          	"reportDir": "reports/html",
+          	"reportDir": "cypress/reports",
           	"charts": true,
           	"reportPageTitle": "HTML report",
           	"embeddedScreenshots": true,

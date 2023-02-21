@@ -35,10 +35,7 @@ pipeline{
 			}
 			 post{
                                         always  {
-						script {sh '''
-						cp -rf /e2e/cypress/*  $WORKSPACE/
-						'''}
-                                                 stash includes: 'reports/**/*', name: 'report', useDefaultExcludes: false
+                                                 stash includes: '/e2e/cypress/reports/**/*', name: 'report', useDefaultExcludes: false
                                         }
                                         failure {
                                                 script{

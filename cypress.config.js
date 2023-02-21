@@ -5,7 +5,7 @@ module.exports = defineConfig({
   "reporter": "cypress-multi-reporters",
   "video": false,
   "reporterOptions": {
-	  "reporterEnabled": "cypress-mochawesome-reporter, junit",
+	  "reporterEnabled": "cypress-mochawesome-reporter, cypress-junit-reporter",
 	  "mochaJunitReporterReporterOptions": {
       		"mochaFile": "cypress/reports/results-[hash].xml",
 		"jenkinsMode": true,

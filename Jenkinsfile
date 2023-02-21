@@ -35,7 +35,7 @@ pipeline{
 			}
 			 post{
                                         always  {
-                                                 stash includes: '/e2e/cypress/reports/**/*', name: 'report', useDefaultExcludes: false
+                                                 stash includes: '/e2e/cypress/**/*', name: 'report', useDefaultExcludes: false
                                         }
                                         failure {
                                                 script{

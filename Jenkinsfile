@@ -5,7 +5,8 @@ pipeline{
 			steps{
 				script{
 					emailid = readYaml file: "testconfig.yml"
-					echo "${emailid.notification.email.emailRecipients}"
+					emailto = "${emailid.notification.email.emailRecipients}"
+					echo $emailto"
 
 				}
 

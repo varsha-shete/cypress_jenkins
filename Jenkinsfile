@@ -9,14 +9,14 @@ def emailBody = """     Hello,</br></br>
 					"""
 def emailSubject = "${env.JOB_NAME}- Jenkins Build ${currentBuild.currentResult}"
 pipeline{
+	 environment {
+                emailTo = readYaml file: "notification.yml"
+        }
 	agent {
 		docker {
         	image 'custom_cypress'
             	args '--entrypoint='
         	}
-	}
-	environment {
-		emailTo = readYaml file: "notification.yml"
 	}
 	stages{
 		stage('Clean Workspace'){

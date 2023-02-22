@@ -6,9 +6,7 @@ pipeline{
 	stages{
 		stage('env'){
 			steps{
-				env.emailTo = configTest['notification']['email']['emailRecipients']
-				//emailext body: "hello", subject: "test", to: "${env.emailid}"
-				echo "${env.emailTo}"
+				env.emailTo = emailid['notification']['email']['emailRecipients']
 
 			}
 		}

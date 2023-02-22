@@ -7,8 +7,7 @@ pipeline{
 		stage('env'){
 			steps{
 				script{
-					emailto = "${emailid.notification.email.emailRecipients}"
-					echo "$emailto"
+					echo "${emailid.notification.email.emailRecipients}"
 				}
 
 			}

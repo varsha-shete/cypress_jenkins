@@ -6,7 +6,7 @@ pipeline{
 	stages{
 		stage('env'){
 			steps{
-				env.emailTo = emailid['notification']['email']['emailRecipients']
+				emailTo = emailid['notification']['email']['emailRecipients']
 
 			}
 		}

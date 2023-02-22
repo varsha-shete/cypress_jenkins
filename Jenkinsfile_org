@@ -1,16 +1,15 @@
-def boolean stage_status = true
-def emailTo
-def emailBody = """     Hello,</br></br>
-                            ${env.JOB_NAME} - Build # $BUILD_NUMBER ${currentBuild.currentResult}</br></br>
-                            Please find the attached zip file for junit, html reports alongwith videos and screenshots</br></br></br>
-			    Kindly check console output <a href='$BUILD_URL'>here</a> to view the details.</br></br></br>
-                            Regards,</br>
-                            CSI4Auto DevOps Team
-					"""
-def emailSubject = "${env.JOB_NAME}- Jenkins Build ${currentBuild.currentResult}"
 pipeline{
 	 environment {
                 emailTo = readYaml file: "notification.yml"
+		emailBody = """     Hello,</br></br>
+                            ${env.JOB_NAME} - Build # $BUILD_NUMBER ${currentBuild.currentResult}</br></br>
+                            Please find the attached zip file for junit, html reports alongwith videos and screenshots</br></br></br>
+                            Kindly check console output <a href='$BUILD_URL'>here</a> to view the details.</br></br></br>
+                            Regards,</br>
+                            CSI4Auto DevOps Team
+                                        """
+		boolean stage_status = true
+		emailSubject = "${env.JOB_NAME}- Jenkins Build ${currentBuild.currentResult}"
         }
 	agent {
 		docker {
@@ -53,7 +52,7 @@ pipeline{
                                         }
                                         failure {
                                                 script{
-                                                        stage_status = false
+                                                        env.stage_status = false
                                                 }
                                         }
 
@@ -85,13 +84,13 @@ pipeline{
 		}
 		stage('Email notification'){
 			steps{
-				emailext attachmentsPattern: 'reports.zip', body: "${emailBody}", subject: "${emailSubject}", to: "${emailTo}"
+				emailext attachmentsPattern: 'reports.zip', body: "${env.emailBody}", subject: "${env.emailSubject}", to: "${env.emailTo}"
 			}
 		}
 		stage('set build status'){
 			steps{
 				script{
-	                                 if ( stage_status == true ){
+	                                 if ( "${env.stage_status}" == true ){
         	                                  currentBuild.result = "SUCCESS"
                 	                 }else {
                         	                  currentBuild.result = "FAILURE"

@@ -8,7 +8,7 @@ pipeline{
                             Regards,</br>
                             CSI4Auto DevOps Team
                                         """
-		boolean stage_status = true
+		stage_status = true
 		emailSubject = "${env.JOB_NAME}- Jenkins Build ${currentBuild.currentResult}"
         }
 	agent {
@@ -53,6 +53,7 @@ pipeline{
                                         failure {
                                                 script{
                                                         env.stage_status = false
+							echo "${env.stage_status}"
                                                 }
                                         }
 
@@ -84,7 +85,8 @@ pipeline{
 		}
 		stage('Email notification'){
 			steps{
-				emailext attachmentsPattern: 'reports.zip', body: "${env.emailBody}", subject: "${env.emailSubject}", to: "${env.emailTo}"
+				//emailext attachmentsPattern: 'reports.zip', body: "${env.emailBody}", subject: "${env.emailSubject}", to: "${env.emailTo}"
+				sh ''' echo hello'''
 			}
 		}
 		stage('set build status'){

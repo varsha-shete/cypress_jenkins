@@ -1,6 +1,6 @@
 def boolean stage_status = true
 def emailTo = readYaml file: "notification.yml"
-println ${emailTo}
+echo emailTo
 def emailBody = """     Hello,</br></br>
                             ${env.JOB_NAME} - Build # $BUILD_NUMBER ${currentBuild.currentResult}</br></br>
                             Please find the attached zip file for junit, html reports alongwith videos and screenshots</br></br></br>

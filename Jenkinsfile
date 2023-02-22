@@ -84,8 +84,7 @@ pipeline{
 		}
 		stage('Email notification'){
 			steps{
-				//emailext attachmentsPattern: 'reports.zip', body: "${env.emailBody}", subject: "${env.emailSubject}", to: "${env.emailTo}"
-				echo "hello"
+				emailext attachmentsPattern: 'reports.zip', body: "${env.emailBody}", subject: "${env.emailSubject}", to: "${env.emailTo}"
 			}
 		}
 		stage('set build status'){

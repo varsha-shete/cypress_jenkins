@@ -82,12 +82,6 @@ pipeline{
 				zip archive: true, dir: 'reports', exclude: '', glob: '', overwrite: true, zipFile: 'reports.zip'
 			}
 		}
-		stage('Email notification'){
-			steps{
-				//emailext attachmentsPattern: 'reports.zip', body: "${env.emailBody}", subject: "${env.emailSubject}", to: "${env.emailTo}"
-				emailext body: "${env.emailBody}", subject: "${env.emailSubject}", to: "${env.emailTo}"
-			}
-		}
 		stage('set build status'){
 			steps{
 				script{
@@ -99,6 +93,12 @@ pipeline{
 				}
                         }
 		}
+		 stage('Email notification'){
+                        steps{
+                                emailext attachmentsPattern: 'reports.zip', body: "${env.emailBody}", subject: "${env.emailSubject}", to: "${env.emailTo}"
+                        }
+                }
+
 
 	}
 }

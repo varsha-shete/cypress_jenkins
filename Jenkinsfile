@@ -54,7 +54,8 @@ pipeline{
                                                 script{
 							withEnv(["stage_status=false"]) {
 							    // some block
-							    echo "${env.stage_status}"
+								echo "inside"
+								echo "${env.stage_status}"
 							}		
                                                 }
                                         }

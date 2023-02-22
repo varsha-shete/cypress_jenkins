@@ -1,0 +1,5 @@
+notification:
+  email:
+    emailRecipients:
+      - "jyoti.chaudhury@capgemini.com"
+      - "varsha-vishwas.shete@capgemini.com"

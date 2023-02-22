@@ -15,7 +15,6 @@ pipeline{
 		docker {
         	image 'custom_cypress'
             	args '--entrypoint='
-		args '-u root:root'
         	}
 	}
 	stages{

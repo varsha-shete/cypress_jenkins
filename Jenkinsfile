@@ -52,8 +52,10 @@ pipeline{
                                         }
                                         failure {
                                                 script{
-                                                        env.stage_status = false
-							echo "${env.stage_status}"
+							withEnv(["stage_status=false"]) {
+							    // some block
+							    echo "${env.stage_status}"
+							}		
                                                 }
                                         }
 

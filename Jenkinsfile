@@ -1,4 +1,4 @@
-def stage_status=true
+def stage_status = true
 pipeline{
 	 environment {
                 emailTo = readYaml file: "notification.yml"
@@ -9,7 +9,6 @@ pipeline{
                             Regards,</br>
                             CSI4Auto DevOps Team
                                         """
-		//stage_status = tru
 		emailSubject = "${env.JOB_NAME}- Jenkins Build ${currentBuild.currentResult}"
         }
 	agent {
@@ -86,12 +85,13 @@ pipeline{
 		stage('Email notification'){
 			steps{
 				//emailext attachmentsPattern: 'reports.zip', body: "${env.emailBody}", subject: "${env.emailSubject}", to: "${env.emailTo}"
+				echo "hello"
 			}
 		}
 		stage('set build status'){
 			steps{
 				script{
-	                                 if ( stage_status == 'true' ){
+	                                 if ( stage_status == true ){
         	                                  currentBuild.result = "SUCCESS"
                 	                 }else {
                         	                  currentBuild.result = "FAILURE"

@@ -6,7 +6,7 @@ pipeline{
 	stages{
 		stage('env'){
 			steps{
-				sh ''' echo $emailid '''
+				println ${emailid}
 			}
 		}
 	}

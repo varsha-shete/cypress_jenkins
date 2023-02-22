@@ -87,6 +87,7 @@ pipeline{
 			steps{
 				//emailext attachmentsPattern: 'reports.zip', body: "${env.emailBody}", subject: "${env.emailSubject}", to: "${env.emailTo}"
 				sh ''' echo hello'''
+				echo "${env.stage_status}"
 			}
 		}
 		stage('set build status'){

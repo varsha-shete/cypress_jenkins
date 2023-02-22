@@ -1,3 +1,4 @@
+def stage_status=true
 pipeline{
 	 environment {
                 emailTo = readYaml file: "notification.yml"
@@ -53,7 +54,6 @@ pipeline{
                                         failure {
                                                 script{
                                                 	stage_status = false
-							echo "$stage_status"
 						}
                                         }
 
@@ -86,8 +86,6 @@ pipeline{
 		stage('Email notification'){
 			steps{
 				//emailext attachmentsPattern: 'reports.zip', body: "${env.emailBody}", subject: "${env.emailSubject}", to: "${env.emailTo}"
-				sh ''' echo hello'''
-				echo "${env.stage_status}"
 			}
 		}
 		stage('set build status'){

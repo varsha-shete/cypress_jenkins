@@ -15,7 +15,7 @@ pipeline{
 		docker {
         	image 'custom_cypress'
             	args '--entrypoint='
-		args "--user=$(id -u):$(id -g)"
+		args '-u root:root'
         	}
 	}
 	stages{

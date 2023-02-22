@@ -7,7 +7,7 @@ pipeline{
 		stage('env'){
 			steps{
 				println "${emailid}"
-				emailext body: "hello", subject: "test", to: "${emailTo}"
+				emailext body: "hello", subject: "test", to: "${env.emailid}"
 
 			}
 		}

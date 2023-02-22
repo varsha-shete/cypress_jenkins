@@ -8,7 +8,7 @@ pipeline{
                             Regards,</br>
                             CSI4Auto DevOps Team
                                         """
-		stage_status = true
+		//stage_status = tru
 		emailSubject = "${env.JOB_NAME}- Jenkins Build ${currentBuild.currentResult}"
         }
 	agent {
@@ -52,12 +52,9 @@ pipeline{
                                         }
                                         failure {
                                                 script{
-							withEnv(["stage_status=false"]) {
-							    // some block
-								echo "inside"
-								echo "${env.stage_status}"
-							}		
-                                                }
+                                                	stage_status = false
+							echo "$stage_status"
+						}
                                         }
 
 
@@ -96,7 +93,7 @@ pipeline{
 		stage('set build status'){
 			steps{
 				script{
-	                                 if ( env.stage_status == 'true' ){
+	                                 if ( stage_status == 'true' ){
         	                                  currentBuild.result = "SUCCESS"
                 	                 }else {
                         	                  currentBuild.result = "FAILURE"

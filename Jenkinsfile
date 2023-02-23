@@ -5,7 +5,7 @@ def emailBody = """     Hello,</br></br>
                             Regards,</br>
                             CSI4Auto DevOps Team
                                         """
-//def emailSubject = "${env.JOB_NAME}- Jenkins Build ${currentBuild.currentResult}"
+def emailSubject = "${env.JOB_NAME}- Jenkins Build ${currentBuild.currentResult}"
 
 pipeline{
 	environment{
@@ -64,6 +64,7 @@ pipeline{
 		stage('junit report generation'){
 			steps{
 				junit  allowEmptyResults: true, keepLongStdio: true, skipMarkingBuildUnstable: true, skipPublishingChecks: true, testResults: 'reports/junit/*.xml'
+				echo "${emailSubject}"
 			}
 		}
 		stage('html report generation'){
@@ -98,9 +99,10 @@ pipeline{
 		stage('Email notification'){
                         steps{
 				script{
-					echo "${currentBuild.currentResult}"
-					echo "${ currentBuild.result}"
-					def emailSubject = "${env.JOB_NAME}- Jenkins Build ${currentBuild.currentResult}"
+				//	echo "${currentBuild.currentResult}"
+				//	echo "${ currentBuild.result}"
+				//	def emailSubject = "${env.JOB_NAME}- Jenkins Build ${currentBuild.currentResult}"
+				echo "${emailSubject}"
 					emailto = env.emailto.replaceAll(~/[\[\]]/, '')
 					echo "${emailto}"
 					//emailext attachmentsPattern: 'reports.zip', body: "${emailBody}", subject: "${emailSubject}", to: "${emailto}"

@@ -44,6 +44,7 @@ pipeline{
 			 post{
                                         always  {
 						sh '''
+							ls -lrt /e2e/
 							cp -rf /e2e/cypress/*  $WORKSPACE/
 						'''
                                         }

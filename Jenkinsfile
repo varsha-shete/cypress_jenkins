@@ -6,7 +6,7 @@ pipeline{
 				script{
 					emailid = readYaml file: "testconfig.yml"
 					String emailto = "${emailid.notification.email.emailRecipients}"
-					String actual = emailto.replaceAll(/[/, "")
+					String actual = emailto.replaceAll(/"["/, "")
 					echo "${actual}"
 				}
 

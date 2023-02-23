@@ -7,7 +7,7 @@ pipeline{
 				script{
 					emailid = readYaml file: "testconfig.yml"
 					emailto = "${emailid.notification.email.emailRecipients}"
-					sh ''' echo $emailto '''
+					str = emailto.replaceAll( '[', '' )
 				}
 
 			}

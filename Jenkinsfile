@@ -8,7 +8,6 @@ def emailBody = """     Hello,</br></br>
 def emailSubject = "${env.JOB_NAME}- Jenkins Build ${currentBuild.currentResult}"
 
 pipeline{
-                                        """
 	agent {
 		docker {
         	image 'custom_cypress'

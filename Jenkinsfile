@@ -93,6 +93,7 @@ pipeline{
 		stage('Email notification'){
                         steps{
 				script{
+					sh '''pwd'''
 					emailid = readYaml file: "testconfig.yml"
                                         emailto = "${emailid.notification.email.emailRecipients}"
 					String stringIds=emailto.join(",")

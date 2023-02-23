@@ -1,15 +1,22 @@
 def emailto
 pipeline{
+	environment{
+		emailid = readYaml file: "testconfig.yml"
+                emailto = "${emailid.notification.email.emailRecipients}"
+	
+	}
+
 	agent any
 	stages{
 		stage('env'){
 			steps{
 				script{
-					emailid = readYaml file: "testconfig.yml"
-					emailto = "${emailid.notification.email.emailRecipients}"
+					//emailid = readYaml file: "testconfig.yml"
+					//emailto = "${emailid.notification.email.emailRecipients}"
 					//str = emailto.substring(1)
-					str = emailto.replaceAll(~/[\[\]]/, '')
-					echo "${str}"
+					//str = emailto.replaceAll(~/[\[\]]/, '')
+					str = env.emailid
+					//echo "${str}"
 				}
 
 			}

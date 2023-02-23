@@ -92,12 +92,15 @@ pipeline{
 		}
 		stage('Email notification'){
                         steps{
+				script{
 					emailid = readYaml file: "testconfig.yml"
                                         emailto = "${emailid.notification.email.emailRecipients}"
 					String stringIds=emailto.join(",")
-					emailext attachmentsPattern: 'reports.zip', body: "${emailBody}", subject: "${emailSubject}", to: "${emailTo}"
+					emailext attachmentsPattern: 'reports.zip', body: "${emailBody}", subject: "${emailSubject}", to: "${stringIds}"
+				}
 
                         }
+
                 }
 
 	}

@@ -15,7 +15,7 @@ pipeline{
 					//emailto = "${emailid.notification.email.emailRecipients}"
 					//str = emailto.substring(1)
 					//str = emailto.replaceAll(~/[\[\]]/, '')
-					str = env.emailid
+					str = env.emailto
 					echo "${str}"
 				}
 

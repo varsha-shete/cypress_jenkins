@@ -5,9 +5,8 @@ pipeline{
 			steps{
 				script{
 					emailid = readYaml file: "testconfig.yml"
-					emailto = "${emailid.notification.email.emailRecipients}"
+					String emailto = "${emailid.notification.email.emailRecipients}"
 					echo "${emailto}"
-					emailto.flatten()
 				}
 
 			}

@@ -16,7 +16,7 @@ pipeline{
 					//str = emailto.substring(1)
 					//str = emailto.replaceAll(~/[\[\]]/, '')
 					str = env.emailid
-					//echo "${str}"
+					echo "${str}"
 				}
 
 			}

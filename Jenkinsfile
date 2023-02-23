@@ -1,6 +1,6 @@
 def stage_status = true
 def emailBody = """     Hello,</br></br>
-                            Please find the attached report of regression testing</br></br></br>
+                            Please find the attached report of smoke testing</br></br></br>
                             Kindly check console output <a href='$BUILD_URL'>here</a> to view the details.</br></br></br>
                             Regards,</br>
                             CSI4Auto DevOps Team
@@ -98,9 +98,12 @@ pipeline{
 		stage('Email notification'){
                         steps{
 				script{
+					echo "${currentBuild.currentResult}"
+					echo "${ currentBuild.result}"
+					def emailSubject = "${env.JOB_NAME}- Jenkins Build ${currentBuild.currentResult}"
 					emailto = env.emailto.replaceAll(~/[\[\]]/, '')
 					echo "${emailto}"
-					emailext attachmentsPattern: 'reports.zip', body: "${emailBody}", subject: "${emailSubject}", to: "${emailto}"
+					//emailext attachmentsPattern: 'reports.zip', body: "${emailBody}", subject: "${emailSubject}", to: "${emailto}"
 				}
 
                         }

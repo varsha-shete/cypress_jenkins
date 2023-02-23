@@ -1,6 +1,6 @@
 def stage_status = true
 def emailBody = """     Hello,</br></br>
-                            Please find the attached </br></br></br>
+                            Please find the attached report of regression testing</br></br></br>
                             Kindly check console output <a href='$BUILD_URL'>here</a> to view the details.</br></br></br>
                             Regards,</br>
                             CSI4Auto DevOps Team

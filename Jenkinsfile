@@ -6,7 +6,7 @@ pipeline{
 				script{
 					emailid = readYaml file: "testconfig.yml"
 					String emailto = "${emailid.notification.email.emailRecipients}"
-					sh '''"echo ${emailto}"'''
+					sh '''"echo $emailto"'''
 				}
 
 			}

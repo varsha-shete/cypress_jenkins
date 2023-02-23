@@ -8,7 +8,7 @@ pipeline{
 					emailid = readYaml file: "testconfig.yml"
 					emailto = "${emailid.notification.email.emailRecipients}"
 					str = emailto.substring(1)
-
+					echo "${str}"
 				}
 
 			}

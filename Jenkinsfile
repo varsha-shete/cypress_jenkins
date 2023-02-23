@@ -45,7 +45,7 @@ pipeline{
                                         always  {
 						sh '''
 							ls -lrt /e2e/
-							cp -rf /e2e/cypress/*  $WORKSPACE/
+							cp -rf /e2e/cypress/*  /e2e/testconfig.yml $WORKSPACE/
 						'''
                                         }
                                         failure {

@@ -7,8 +7,7 @@ pipeline{
 					emailid = readYaml file: "testconfig.yml"
 					emailto = "${emailid.notification.email.emailRecipients}"
 					echo "${emailto}"
-					String stringIds=emailto.join(",") 
-					println "$stringIds"
+					emailto.flatten()
 				}
 
 			}

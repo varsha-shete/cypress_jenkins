@@ -98,6 +98,7 @@ pipeline{
 					emailid = readYaml file: "testconfig.yml"
                                         emailto = "${emailid.notification.email.emailRecipients}"
 					String stringIds=emailto.join(",")
+					println "$stringIds"
 					emailext attachmentsPattern: 'reports.zip', body: "${emailBody}", subject: "${emailSubject}", to: "${stringIds}"
 				}
 
